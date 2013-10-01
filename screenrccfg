@@ -1,0 +1,148 @@
+##
+## C-a :source .screenrc
+##
+
+##########################################################################################
+## Brak's screenrc (based off Shii's Easy Screenrc (based off of blcknight's screenrc)) ##
+## Shii's Easy Screenrc : http://shii.org/knows/Screenrc                                ##
+##########################################################################################
+
+##
+## Useful settings.
+##
+##########################################################################
+crlf off                    ## No Microsoft linebreaks.                 ##
+termcapinfo xterm* ti@:te@                                              ##
+startup_message off         ## Bypass the GPL notice, please.           ##
+vbell off                   ## Disable the visual bell alert.           ##
+autodetach on                                                           ##
+altscreen on                                                            ##
+defscrollback 10000         ## Screen remembers more history.           ##
+shell -bash                 ## Bash is a rather nice shell.             ##
+shelltitle "$ |bash"        ## Blank shell title                        ##
+defmonitor on               ## Turn monitoring on (see 'activity')      ##
+activity "Activity in window %n"    ## Let you know when stuff happens! ##
+msgminwait 0                ## Messages on the screen for at least X    ##
+msgwait 5                   ## Leave messages up for X.                 ##
+sessionname main            ##                                          ##
+defutf8 on                  ##                                          ##
+nonblock on                 ##                                          ##
+hardcopy_append on          ##                                          ##
+#nethack on                 ## Makes error messages cryptic.            ##
+# Enable nethack to make screen more interesting, or keep it disabled   ##
+# to make screen more informative.                                      ##
+##########################################################################
+
+
+##
+## Make windows stay alive, even after they've been ended
+##
+############################################################
+zombie kr
+
+
+##
+## Commands used for backtick substitutions: %` %0` %1`
+##
+############################################################
+#~ backtick 0 1 0 pwd
+#~ backtick 1 1 1 uptime
+
+
+##
+## This caption will always appear at the bottom of the window.
+## To fiddle with it, read the man page for screen.
+##
+######################################################
+caption always
+#~ caption string "%{= bw} %H [%t] %h %= uptime: %1` %D %M %d %C%a "
+caption string "%{= bw} %H [%t] %h %= %D %M %d %C%a "
+#~ hardstatus off
+hardstatus alwayslastline
+#~ hardstatus alwaysfirstline
+#~ hardstatus string "%-Lw%{= bw}%50>%n%f* %t%{-}%+Lw%<"
+#~ hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+#~ hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{-}%{bW}%n*%f%t%?(%u)%?%{-}%{r})%{-}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+hardstatus string '%{= kg}[ %{G}%H%{-} ][%= %{G}%?%-Lw%?%{-}%{+b by} (%{-b W}%n %t%?(%u)%?%{+b .y}) %{-}%{-}%{-}%{G}%+Lw%?%?%=%{-} ][ %{B}%Y-%m-%d %{W}%c%{= g}  ]'
+#~ hardstatus string '%{= kg}[ %{G}%H %{-}][%= %{G}%?%-Lw%?%{-}%{bW}%n%f %t%?(%u)%?%{-}%{G}%+Lw%?%?%=%{-} ][%{B} %d/%m %{W}%c %{g}]'
+#~ hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][ %= %{= kw}%?%-Lw%?%{= kr}(%{= kW}%n*%f %t%?(%u)%?%{= kr})%{= kw}%?%+Lw%?%?%= %{w} ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'
+#~ hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][%= %{= kw}%?%-Lw%?%{= kW}%n*%f %t%?%?%{= kw}%?%+Lw%?%?%= ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'
+windowlist string "%3n %t   %h%=%f"
+
+
+##
+## Let's do some bindings.
+##
+######################################################
+#bind 'R' screen ssh s1554463@sunfire16
+#bind 'R' screen -t sunfire16 ssh s1554463@sunfire16
+#~ bind ^q quit     ## Doesn't work. Use F12 instead.
+bind ^t screen -t   # ^T # Create a new window
+bind q kill         # ^Q # Quit a window
+
+
+##
+## Get F-Keys emulated properly
+##
+#############################################################################
+## http://www.gnu.org/software/screen/manual/screen.html#Input-Translation ##
+#############################################################################
+terminfo * k1=\033OP
+terminfo * k2=\033OQ
+terminfo * k3=\033OR
+terminfo * k4=\033OS
+terminfo * k5=\E[15~
+terminfo * k6=\E[17~
+terminfo * k7=\E[18~
+terminfo * k8=\E[19~
+terminfo * k9=\E[20~
+terminfo * k;=\E[21~
+terminfo * F1=\E[23~
+terminfo * F2=\E[24~
+
+
+##
+## Easy window switcher and command runner.
+##
+######################################################################
+## I don't know of any Unix programs that use these keys... do you? ##
+######################################################################
+#~ bindkey "^T" screen -t # ^T # Create a new window
+
+bindkey -k k1 select 1 # F1
+bindkey -k k2 select 2 # F2
+bindkey -k k3 select 3 # F3
+bindkey -k k4 select 4 # F4
+bindkey -k k5 select 5  # F5
+bindkey -k k6 select 6  # F6
+bindkey -k k7 select 7  # F7
+bindkey -k k8 select 8  # F8
+
+bindkey -k k9 select 4  # F9
+bindkey -k k; source "$HOME/.screenrccfg" # F10 # Reload this file, in case we are editing it.
+bindkey -k F1 command   # F11 # Shortcut to [Ctrl]-[a]
+bindkey -k F2 quit      # F12 # Quick Quit All
+bindkey -k kI command   # Insert # Shortcut to [Ctrl]-[a]
+
+
+##
+## Scroll wheel moves up and down the terminal history.
+##
+#############################################################################
+# http://www.staldal.nu/tech/2009/01/11/how-to-use-mousewheel-in-gnu-screen/comment-page-1/
+#############################################################################
+# Scroll up
+bindkey -d "^[[5S" eval copy "stuff 5\025"
+bindkey -m "^[[5S" stuff 5\025
+
+# Scroll down
+bindkey -d "^[[5T" eval copy "stuff 5\004"
+bindkey -m "^[[5T" stuff 5\004
+
+# Scroll up more
+bindkey -d "^[[25S" eval copy "stuff \025"
+bindkey -m "^[[25S" stuff \025
+
+# Scroll down more
+bindkey -d "^[[25T" eval copy "stuff \004"
+bindkey -m "^[[25T" stuff \004

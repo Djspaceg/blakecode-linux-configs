@@ -1,0 +1,52 @@
+
+HOMECONFIG=''
+#~ HOMECONFIG='~/.personalshare'
+
+if [ "$HOMECONFIG" == "" ];
+then
+    HOMECONFIG=$PWD
+fi
+
+
+### Make the personal share folder
+if [ ! -d "$HOMECONFIG" ];
+then
+    echo Making symlink: "$PWD" "$HOMECONFIG"
+    ln -sf "$PWD" "$HOMECONFIG"
+fi
+
+
+### Bash Profile
+if [ ! -f ~/.bash_profile ];
+then
+    echo Making symlink: "$HOMECONFIG/bash_profile" ~/.bash_profile
+    ln -sf "$HOMECONFIG/bash_profile" ~/.bash_profile
+fi
+
+if [ ! -f ~/.bashrc ];
+then
+    echo Making symlink: "$HOMECONFIG/bash_profile" ~/.bashrc
+    ln -sf "$HOMECONFIG/bash_profile" ~/.bashrc
+fi
+
+### screen cfg
+if [ ! -f ~/.screenrc ];
+then
+    echo Making symlink: "$HOMECONFIG/screenrc" ~/.screenrc
+    ln -sf "$HOMECONFIG/screenrc" ~/.screenrc
+fi
+
+if [ ! -f ~/.screenrccfg ];
+then
+    echo Making symlink: "$HOMECONFIG/screenrccfg" ~/.screenrccfg
+    ln -sf "$HOMECONFIG/screenrccfg" ~/.screenrccfg
+fi
+
+### xterm cfg
+if [ ! -f ~/.Xresources ];
+then
+    echo Making symlink: "$HOMECONFIG/Xresources" ~/.Xresources
+    ln -sf "$HOMECONFIG/Xresources" ~/.Xresources
+fi
+
+echo Done.

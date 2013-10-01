@@ -1,0 +1,33 @@
+
+# C-a :source .screenrc
+
+#~ screen -d -RR -t 'MB'   1 bash --init-file ~/.bash_profile
+#~ screen -d RR -t 'ApacheErr' 3 bash -c 'apacheerr -f'
+screen -t 'MB'   1
+screen -t 'SQL'  2
+screen -t ApacheErr   3 bash -c 'tail /var/log/httpd/error_log -f'
+screen -t Misc   4
+screen -t Misc   5
+screen -t Misc   6
+screen -t Misc   7
+screen -t Misc   8
+select 1
+select 0
+stuff "mb\012"
+
+#~ screen -t sunfire01 0
+#~ screen -t sunfire16 2 ssh s1554463@sunfire16
+#~ screen -t sunfire16 1 ssh s1554463@sunfire16
+
+#chdir /hr
+#screen -t acer 0
+#screen -t kw64 1 ssh root@132.234.103.72 -t 'screen -d -RR kw64'
+#screen -t spl2 2 ssh root@132.234.103.113 -t 'screen -d -RR spl2'
+#screen -t sunfire 3 ssh s1554463@132.234.222.1 -t 'screen -d -RR spl'
+
+##
+## Let's load our configuration,
+## so we don't go crazy, huh?
+##
+######################################################
+source $HOME/.screenrccfg

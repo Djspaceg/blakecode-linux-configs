@@ -1,0 +1,37 @@
+
+!
+! Comments begin with a "!" character.
+!
+
+xterm*Background:               black
+xterm*Foreground:               green
+xterm*cursorColor:              LightBlue
+xterm*pointerShape:             arrow
+xterm*pointerColor:             blue
+xterm*scrollBar:                true
+xterm*scrollTtyOutput:          false
+xterm*rightScrollBar:           true
+xterm.vt100.geometry:           160x80
+xterm*colorBDMode:              true
+xterm*colorBD:                  rgb:fc/00/00
+
+XTerm*faceName: Profont
+XTerm*faceSize: 9
+
+
+! http://www.staldal.nu/tech/2009/01/11/how-to-use-mousewheel-in-gnu-screen/comment-page-1/
+
+XTerm*saveLines: 0
+XTerm*vt100.translations: #override \n\
+  Ctrl <Btn4Down>: string(0x1b) string("[25S") \n\
+  Lock Ctrl <Btn4Down>: string(0x1b) string("[25S") \n\
+  Lock @Num_Lock Ctrl <Btn4Down>: string(0x1b) string("[25S") \n\
+  @Num_Lock Ctrl <Btn4Down>: string(0x1b) string("[25S") \n\
+  <Btn4Down>: string(0x1b) string("[5S") \n\
+  Ctrl <Btn5Down>: string(0x1b) string("[25T") \n\
+  Lock Ctrl <Btn5Down>: string(0x1b) string("[25T") \n\
+  Lock @Num_Lock Ctrl <Btn5Down>: string(0x1b) string("[25T") \n\
+  @Num_Lock Ctrl <Btn5Down>: string(0x1b) string("[25T") \n\
+  <Btn5Down>: string(0x1b) string("[5T") \n\
+  Shift <KeyPress> Prior: string(0x1b) string("[25S") \n\
+  Shift <KeyPress> Next: string(0x1b) string("[25T") \n
