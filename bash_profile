@@ -161,6 +161,7 @@ if $PLAT_MAC ; then
 fi
 alias svnbranch='cd ~/src/mb/branches; svn copy http://svn.mendelbio.com/repos/compbio/mb/trunk'
 alias mbbranchmerge='svn merge http://svn.mendelbio.com/repos/compbio/mb/trunk'
+alias makeless='~/Source/enyo/tools/lessc.sh ./all-package.js'
 
 ### Directories
 alias ..='cd ..'
