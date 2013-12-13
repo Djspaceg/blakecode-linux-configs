@@ -136,6 +136,7 @@ if $PLAT_MAC ; then
     alias pm='ps amcxo pid,pcpu,pmem,user,command | head -10'
     alias pc='ps arcxo pid,pcpu,pmem,user,command | head -10'
 fi
+alias ip='ifconfig | grep "inet "'
 
 alias dus='du -Psckx * | sort -nr'
 alias untar='tar -zxvf'
