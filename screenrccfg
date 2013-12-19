@@ -56,14 +56,14 @@ zombie kr
 ######################################################
 caption always
 #~ caption string "%{= bw} %H [%t] %h %= uptime: %1` %D %M %d %C%a "
-caption string "%{= bw} %H [%t] %h %= %D %M %d %C%a "
+caption string "%{= mw} %H [%t] %h %= %D %M %d %C%a "
 #~ hardstatus off
 hardstatus alwayslastline
 #~ hardstatus alwaysfirstline
 #~ hardstatus string "%-Lw%{= bw}%50>%n%f* %t%{-}%+Lw%<"
 #~ hardstatus string '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
 #~ hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{-}%{bW}%n*%f%t%?(%u)%?%{-}%{r})%{-}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
-hardstatus string '%{= kg}[ %{G}%H%{-} ][%= %{G}%?%-Lw%?%{-}%{+b by} (%{-b W}%n %t%?(%u)%?%{+b .y}) %{-}%{-}%{-}%{G}%+Lw%?%?%=%{-} ][ %{B}%Y-%m-%d %{W}%c%{= g}  ]'
+hardstatus string '%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{+b mY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{y}%+Lw%?%?%=%{-} ][ %{M}%Y-%m-%d %{W}%c%{= g}  ]'
 #~ hardstatus string '%{= kg}[ %{G}%H %{-}][%= %{G}%?%-Lw%?%{-}%{bW}%n%f %t%?(%u)%?%{-}%{G}%+Lw%?%?%=%{-} ][%{B} %d/%m %{W}%c %{g}]'
 #~ hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][ %= %{= kw}%?%-Lw%?%{= kr}(%{= kW}%n*%f %t%?(%u)%?%{= kr})%{= kw}%?%+Lw%?%?%= %{w} ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'
 #~ hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][%= %{= kw}%?%-Lw%?%{= kW}%n*%f %t%?%?%{= kw}%?%+Lw%?%?%= ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'

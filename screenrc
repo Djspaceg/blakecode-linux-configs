@@ -3,17 +3,20 @@
 
 #~ screen -d -RR -t 'MB'   1 bash --init-file ~/.bash_profile
 #~ screen -d RR -t 'ApacheErr' 3 bash -c 'apacheerr -f'
-screen -t 'MB'   1
-screen -t 'SQL'  2
-screen -t ApacheErr   3 bash -c 'tail /var/log/httpd/error_log -f'
+screen -t 'Working'   1
+chdir $HOME/Source
+screen -t 'Project'  2
+chdir $HOME/Source/moonstone/css
+screen -t 'Moon-CSS'   3
+chdir
 screen -t Misc   4
 screen -t Misc   5
 screen -t Misc   6
-screen -t Misc   7
-screen -t Misc   8
+screen -t Minicom   7 minicom
+screen -t ApacheErr   8 bash -c 'tail -f /private/var/log/apache2/error_log'
 select 1
 select 0
-stuff "mb\012"
+# stuff "mb\012"
 
 #~ screen -t sunfire01 0
 #~ screen -t sunfire16 2 ssh s1554463@sunfire16
