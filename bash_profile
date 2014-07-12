@@ -137,6 +137,8 @@ if $PLAT_MAC ; then
     alias pc='ps arcxo pid,pcpu,pmem,user,command | head -10'
 fi
 alias ip='ifconfig | grep "inet "'
+alias rmemptydirs='find -type d -exec bash -c \'shopt -s nullglob; shopt -s dotglob; files=("$1"/*); [[ ${files[@]} ]] || rmdir "$1"\' -- {} \;'
+alias rmignored='rm */*.ignore'
 
 alias dus='du -Psckx * | sort -nr'
 alias untar='tar -zxvf'
