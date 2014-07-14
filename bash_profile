@@ -42,7 +42,7 @@ bash_prompt() {
           ;;
     esac
     local NONE="\[\033[0m\]"    # unsets color to term's fg color
-    
+
     # regular colors
     local K="\[\033[0;30m\]"    # black
     local R="\[\033[0;31m\]"    # red
@@ -52,7 +52,7 @@ bash_prompt() {
     local M="\[\033[0;35m\]"    # magenta
     local C="\[\033[0;36m\]"    # cyan
     local W="\[\033[0;37m\]"    # white
-    
+
     # emphasized (bolded) colors
     local EMK="\[\033[1;30m\]"
     local EMR="\[\033[1;31m\]"
@@ -62,7 +62,7 @@ bash_prompt() {
     local EMM="\[\033[1;35m\]"
     local EMC="\[\033[1;36m\]"
     local EMW="\[\033[1;37m\]"
-    
+
     # background colors
     local BGK="\[\033[40m\]"
     local BGR="\[\033[41m\]"
@@ -72,20 +72,20 @@ bash_prompt() {
     local BGM="\[\033[45m\]"
     local BGC="\[\033[46m\]"
     local BGW="\[\033[47m\]"
-    
+
     local UC=$C                 # user's color
     [ $UID -eq "0" ] && UC=$R   # root's color
-    
+
     ### Set the prompt color using the status
     #~ local RET=$?
     local PROMPT_STATUS="${R}\!${NONE}"
     [[ $? -eq "0" ]] && PROMPT_STATUS="${G}\!${NONE}"
-    
+
     #~ if [ $? -eq "0" ]
     #~ then
         #~ PROMPT_STATUS="${B}\!${NONE}"
     #~ fi
-    
+
     #~ PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h ${EMB}\${NEW_PWD}${EMK}]${UC}\\$ ${NONE}"
     ### Blake's Colors
     ### State - EMC NONE Y NONE W
@@ -99,7 +99,7 @@ PLAT_NIX=true
 PLAT_MAC=false
 
 case "$OSTYPE" in
-  darwin*)  PLAT_MAC=true ;; 
+  darwin*)  PLAT_MAC=true ;;
   solaris*) PLAT_NIX=true ;;
   linux*)   PLAT_NIX=true ;;
   bsd*)     PLAT_NIX=true ;;
@@ -117,7 +117,7 @@ export PATH=/opt/bin:/opt/sbin:/usr/local/bin:$PATH:~/Unix/apache-ant/bin:~/Unix
 #~ SMALL_PWD='\w';
 
 # set prompt: ``username@hostname:/directory $ ''
-#PS1="[\e[1;36m\u\e[m\]@\e[0;33m\h\e[m\]:\e[0;37m\w\e[m\]] " 
+#PS1="[\e[1;36m\u\e[m\]@\e[0;33m\h\e[m\]:\e[0;37m\w\e[m\]] "
 #~ PS1="[\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`\!\[\033[0m\]][\[\033[1;36m\]\u\[\033[0m\]@\[\033[0;33m\]\h\[\033[0m\]:\[\033[0;37m\]\`***if [[ `pwd|wc -c|tr -d " "` > 25 ]]; then echo "/.../\\W"; else echo "\\w"; fi***\`\[\033[0m\]]\[\033]2;\h @ \w\a"
 #~ PS1="[\`if [[ \$? = "0" ]]; then echo "\\[\\033[32m\\]"; else echo "\\[\\033[31m\\]"; fi\`\!\[\033[0m\]][\[\033[1;36m\]\u\[\033[0m\]@\[\033[0;33m\]\h\[\033[0m\]:\[\033[0;37m\]${SMALL_PWD}\[\033[0m\]]\[\033]2;\h  ${SMALL_PWD}\a"
 #~ case `id -u` in
@@ -137,7 +137,7 @@ if $PLAT_MAC ; then
     alias pc='ps arcxo pid,pcpu,pmem,user,command | head -10'
 fi
 alias ip='ifconfig | grep "inet "'
-alias rmemptydirs='find -type d -exec bash -c \'shopt -s nullglob; shopt -s dotglob; files=("$1"/*); [[ ${files[@]} ]] || rmdir "$1"\' -- {} \;'
+alias rmemptydirs="find -type d -exec bash -c 'shopt -s nullglob; shopt -s dotglob; files=(\"$1\"/*); [[ ${files[@]} ]] || rmdir \"$1\"' -- {} ;"
 alias rmignored='rm */*.ignore'
 
 alias dus='du -Psckx * | sort -nr'
