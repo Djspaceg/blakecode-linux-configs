@@ -45,8 +45,9 @@ zombie kr
 ## Commands used for backtick substitutions: %` %0` %1`
 ##
 ############################################################
-#~ backtick 0 1 0 pwd
-#~ backtick 1 1 1 uptime
+# backtick 0 0 1 pwd
+# backtick 1 0 1 uptime
+backtick 2 0 5 $HOME/Source/blakecode-linux-configs/myip.sh
 
 
 ##
@@ -54,9 +55,10 @@ zombie kr
 ## To fiddle with it, read the man page for screen.
 ##
 ######################################################
+#
 caption always
 #~ caption string "%{= bw} %H [%t] %h %= uptime: %1` %D %M %d %C%a "
-caption string "%{= mw} %H [%t] %h %= %D %M %d %C%a "
+caption string '%{= mw} %H %0` [%t] %h %= %l    %{-b W}%2`%{-}    %D %M %d %C%a '
 #~ hardstatus off
 hardstatus alwayslastline
 #~ hardstatus alwaysfirstline
@@ -68,7 +70,6 @@ hardstatus string '%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{+b mY} (%{-b W}%n 
 #~ hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][ %= %{= kw}%?%-Lw%?%{= kr}(%{= kW}%n*%f %t%?(%u)%?%{= kr})%{= kw}%?%+Lw%?%?%= %{w} ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'
 #~ hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][%= %{= kw}%?%-Lw%?%{= kW}%n*%f %t%?%?%{= kw}%?%+Lw%?%?%= ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'
 windowlist string "%3n %t   %h%=%f"
-
 
 ##
 ## Let's do some bindings.
@@ -124,6 +125,14 @@ bindkey -k F1 command   # F11 # Shortcut to [Ctrl]-[a]
 bindkey -k F2 quit      # F12 # Quick Quit All
 bindkey -k kI command   # Insert # Shortcut to [Ctrl]-[a]
 
+# Pretend that the window numbering starts at 1, not 0.
+# Then use command '0' to jump to window number #10.
+bind c screen 1
+bind 0 select 10
+
+# use the PgUp and PgDn keys to enter copy mode
+# and page through the window backlog:
+# bindkey -k kP copy
 
 ##
 ## Scroll wheel moves up and down the terminal history.

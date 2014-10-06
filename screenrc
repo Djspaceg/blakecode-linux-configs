@@ -7,12 +7,12 @@ screen -t 'Working'   1
 chdir $HOME/Source
 screen -t 'Project'  2
 chdir $HOME/Source/moonstone/css
-screen -t 'Moon-CSS'   3
+screen -t 'Project-2'   3
 chdir
-screen -t Misc   4
+screen -t SSH   4
 screen -t Misc   5
 screen -t Misc   6
-screen -t Minicom   7 minicom
+screen -t Firmware   7 screen /dev/cu.usbserial 115200
 screen -t ApacheErr   8 bash -c 'tail -f /private/var/log/apache2/error_log'
 select 1
 select 0
