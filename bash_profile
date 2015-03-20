@@ -193,3 +193,9 @@ fi
 
 bind '"\t":menu-complete'
 #bindkey "^I" complete-word-fwd
+
+PERL_MB_OPT="--install_base \"/Users/blake/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/blake/perl5"; export PERL_MM_OPT;
+
+PERL_MB_OPT="--install_base \"/Users/blake/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/blake/perl5"; export PERL_MM_OPT;
