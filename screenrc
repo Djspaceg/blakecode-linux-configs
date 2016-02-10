@@ -6,7 +6,7 @@
 screen -t 'Working'   1
 chdir $HOME/Source
 screen -t 'Project'  2
-chdir $HOME/Source/moonstone/css
+chdir $HOME/Source/enyo-strawman
 screen -t 'Project-2'   3
 chdir
 screen -t SSH   4
