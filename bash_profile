@@ -146,9 +146,6 @@ alias cpan='sudo perl -MCPAN -e shell'
 alias editcron='env EDITOR=nano crontab -e'
 
 ### Server Connections
-alias carson='ssh carson.mendelbio.com'
-alias limsdev='ssh limsdev.mendelbio.com'
-alias lims='ssh lims.mendelbio.com'
 alias quakers='ssh -l quakers q3.mendelbio.com'
 
 ### Working with Perl
