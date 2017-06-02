@@ -155,3 +155,12 @@ bindkey -m "^[[25S" stuff \025
 # Scroll down more
 bindkey -d "^[[25T" eval copy "stuff \004"
 bindkey -m "^[[25T" stuff \004
+
+##
+## Ensure New Windows Get Their Own Command History
+##
+#############################################################################
+# http://stackoverflow.com/questions/14914570/bash-how-do-i-get-the-command-history-in-a-screen-session
+#############################################################################
+bind c screen bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+bind ^C screen bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
