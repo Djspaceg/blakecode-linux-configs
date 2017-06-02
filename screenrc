@@ -1,19 +1,23 @@
-
 # C-a :source .screenrc
 
 #~ screen -d -RR -t 'MB'   1 bash --init-file ~/.bash_profile
 #~ screen -d RR -t 'ApacheErr' 3 bash -c 'apacheerr -f'
-screen -t 'Working'   1
-chdir $HOME/Source
-screen -t 'Project'  2
-chdir $HOME/Source/enyo-strawman
-screen -t 'Project-2'   3
+screen -t 0
+screen -t Working     1 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+chdir $HOME/Source/enact/packages/sampler
+screen -t Storybook   2 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+chdir $HOME/Source/enact-docs
+screen -t Docs        3 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+chdir $HOME/Source/enact-samples/pattern-activity-panels
+screen -t Patterns    4 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+chdir $HOME/.ssh
+screen -t SSH         5 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+screen -t SSH2        6 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
 chdir
-screen -t SSH   4
-screen -t Misc   5
-screen -t Misc   6
-screen -t Firmware   7 screen /dev/cu.usbserial 115200
-screen -t ApacheErr   8 bash -c 'tail -f /private/var/log/apache2/error_log'
+screen -t Serial      7 screen /dev/cu.UC-232AC 115200
+chdir $HOME/Source/enyo-strawman
+screen -t Strawman    9 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+# screen -t ApacheErr   8 bash -c 'tail -f /private/var/log/apache2/error_log'
 select 1
 select 0
 # stuff "mb\012"

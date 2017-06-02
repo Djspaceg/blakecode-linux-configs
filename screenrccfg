@@ -118,8 +118,8 @@ bindkey -k k5 select 5  # F5
 bindkey -k k6 select 6  # F6
 bindkey -k k7 select 7  # F7
 bindkey -k k8 select 8  # F8
+bindkey -k k9 select 9  # F9
 
-bindkey -k k9 select 4  # F9
 bindkey -k k; source "$HOME/.screenrccfg" # F10 # Reload this file, in case we are editing it.
 bindkey -k F1 command   # F11 # Shortcut to [Ctrl]-[a]
 bindkey -k F2 quit      # F12 # Quick Quit All
