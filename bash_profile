@@ -164,6 +164,8 @@ fi
 alias svnbranch='cd ~/src/mb/branches; svn copy http://svn.mendelbio.com/repos/compbio/mb/trunk'
 alias mbbranchmerge='svn merge http://svn.mendelbio.com/repos/compbio/mb/trunk'
 alias makeless='~/Source/enyo/tools/lessc.sh ./all-package.js'
+alias npmreset='rm -rf node_modules package-lock.json'
+alias nvmupgrade='nvm alias default node && nvm install node --reinstall-packages-from=node'
 
 ### Directories
 alias ..='cd ..'
@@ -179,8 +181,8 @@ export LSCOLORS='dahebxBxDxehxxbxexGxac'
 alias enstall='npm install; enact link'
 alias serve='npm run serve'
 alias qa='npm run serve-qa'
-alias testComponent='enact test start --single-run --browsers PhantomJS'
-alias testComponentWatch='enact test start --browsers PhantomJS'
+alias testComponent='enact test start --single-run --browsers=PhantomJS'
+alias testComponentWatch='enact test start --browsers=PhantomJS'
 
 
 # For GNU ls (installed via brew -> coreutil)
