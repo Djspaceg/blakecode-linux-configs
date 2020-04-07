@@ -1,0 +1,33 @@
+
+##
+## Let's load our configuration,
+## so we don't go crazy, huh?
+##
+######################################################
+source "$HOME/.profileconfig/screenrccfg"
+
+
+screen -t 0
+
+chdir $HOME
+screen -t Working	1 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+chdir $HOME/Source
+screen -t Source1	2 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+chdir $HOME/Source
+screen -t Source2	3 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+chdir $HOME/.ssh
+screen -t SSH		4 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+
+select 1
+select 0
+
+
+#chdir /hr
+#screen -t acer 0
+#screen -t kw64 1 ssh root@132.234.103.72 -t 'screen -d -RR kw64'
+#screen -t spl2 2 ssh root@132.234.103.113 -t 'screen -d -RR spl2'
+#screen -t sunfire 3 ssh s1554463@132.234.222.1 -t 'screen -d -RR spl'

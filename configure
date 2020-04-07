@@ -1,52 +1,72 @@
 
-HOMECONFIG=''
-#~ HOMECONFIG='~/.personalshare'
+SOURCEDIR=''
+PROFILECONFIGDIR="$HOME/.profileconfig"
+# SOURCEDIR="$HOME/.personalshare"
 
-if [ "$HOMECONFIG" == "" ];
-then
-    HOMECONFIG=$PWD
+if [[ "$SOURCEDIR" == "" ]]; then
+	SOURCEDIR=$PWD
 fi
 
-
 ### Make the personal share folder
-if [ ! -d "$HOMECONFIG" ];
-then
-    echo Making symlink: "$PWD" "$HOMECONFIG"
-    ln -sf "$PWD" "$HOMECONFIG"
+if [[ ! -d "$SOURCEDIR" ]]; then
+	make-symlink "$PWD" "$SOURCEDIR"
+fi
+
+MACHINECONFIGDIR="$SOURCEDIR/machine-configs/$HOSTNAME"
+
+function setup-source-file() {
+	local file=$1
+	make-symlink "$SOURCEDIR/$file" "$MACHINECONFIGDIR/$file"
+}
+
+function setup-profile-file() {
+	local file=$1
+	setup-source-file "$file"
+	make-symlink "$PROFILECONFIGDIR/$file" "$HOME/.$file"
+}
+
+function make-symlink() {
+	local source=$1
+	local target=$2
+
+	if [[ -f "$target" ]] || [[ -d "$target" ]] || [[ -h "$target" ]]; then
+	# if [[ -e "$target" ]]; then ## -e seems to not cooperate with all symlinks...
+
+		if [[ -h "$target" ]] && [[ "$(realpath $source)" != "$(realpath $target)" ]]; then
+			echo Updating symlink: \""$source"\" \""$target"\"
+			# echo   source: "$(realpath \"$source\")"
+			# echo   target: "$(realpath \"$target\")"
+			ln -sf $source $target
+		else
+			# echo $source
+			# echo $target
+			# echo This two are the same
+			# echo "   $(realpath $source)"
+			# echo "   $(realpath $target)"
+			echo "  No need to create $source"
+		fi
+
+	else
+		echo Making symlink: \""$source"\" \""$target"\"
+		ln -s "$source" "$target"
+	fi
+}
+
+### machine-specific config folder
+if [[ ! -d "$PROFILECONFIGDIR" ]]; then
+	make-symlink "$MACHINECONFIGDIR" "$PROFILECONFIGDIR"
 fi
 
 
 ### Bash Profile
-if [ ! -f ~/.bash_profile ];
-then
-    echo Making symlink: "$HOMECONFIG/bash_profile" ~/.bash_profile
-    ln -sf "$HOMECONFIG/bash_profile" ~/.bash_profile
-fi
+setup-profile-file bash_profile
+setup-profile-file bashrc
 
-if [ ! -f ~/.bashrc ];
-then
-    echo Making symlink: "$HOMECONFIG/bash_profile" ~/.bashrc
-    ln -sf "$HOMECONFIG/bash_profile" ~/.bashrc
-fi
+# ### screen cfg
+setup-profile-file screenrc
+setup-source-file screenrccfg
 
-### screen cfg
-if [ ! -f ~/.screenrc ];
-then
-    echo Making symlink: "$HOMECONFIG/screenrc" ~/.screenrc
-    ln -sf "$HOMECONFIG/screenrc" ~/.screenrc
-fi
-
-if [ ! -f ~/.screenrccfg ];
-then
-    echo Making symlink: "$HOMECONFIG/screenrccfg" ~/.screenrccfg
-    ln -sf "$HOMECONFIG/screenrccfg" ~/.screenrccfg
-fi
-
-### xterm cfg
-if [ ! -f ~/.Xresources ];
-then
-    echo Making symlink: "$HOMECONFIG/Xresources" ~/.Xresources
-    ln -sf "$HOMECONFIG/Xresources" ~/.Xresources
-fi
+# ### xterm cfg
+setup-profile-file Xresources
 
 echo Done.

@@ -1,52 +1,7 @@
-# C-a :source .screenrc
-
-#~ screen -d -RR -t 'MB'   1 bash --init-file ~/.bash_profile
-#~ screen -d RR -t 'ApacheErr' 3 bash -c 'apacheerr -f'
-screen -t 0
-
-chdir $HOME/Source
-screen -t Working	1 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
-
-chdir $HOME/Source/enact/packages
-screen -t Enact		2 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
-
-chdir $HOME/Source/enact-theme-sandstone/samples/sampler
-screen -t Sampler	3 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
-
-chdir $HOME/Source/enact-samples
-screen -t App1		4 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
-
-chdir $HOME/Source/enact-samples
-screen -t App2		5 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
-
-chdir $HOME/Source/webos-auto-home
-screen -t App3		6 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
-
-chdir $HOME/.ssh
-screen -t SSH		7 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
-
-chdir
-screen -t Serial	8 screen /dev/cu.usbserial 115200
-# chdir $HOME/Source/enact-agate-apps/communication-server
-# screen -t CommServer	9 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
-# screen -t ApacheErr   8 bash -c 'tail -f /private/var/log/apache2/error_log'
-select 1
-select 0
-# stuff "mb\012"
-
-#~ screen -t sunfire01 0
-#~ screen -t sunfire16 2 ssh s1554463@sunfire16
-#~ screen -t sunfire16 1 ssh s1554463@sunfire16
-
-#chdir /hr
-#screen -t acer 0
-#screen -t kw64 1 ssh root@132.234.103.72 -t 'screen -d -RR kw64'
-#screen -t spl2 2 ssh root@132.234.103.113 -t 'screen -d -RR spl2'
-#screen -t sunfire 3 ssh s1554463@132.234.222.1 -t 'screen -d -RR spl'
 
 ##
 ## Let's load our configuration,
 ## so we don't go crazy, huh?
 ##
 ######################################################
-source $HOME/.screenrccfg
+source "$HOME/.profileconfig/screenrccfg"
