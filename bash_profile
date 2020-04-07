@@ -17,6 +17,50 @@
 # /usr/share/big_dir_name -> ../share/big_dir_name if pwdmaxlen=20
 ##################################################
 bash_prompt_command() {
+	local NONE="\[\033[0m\]"    # unsets color to term's fg color
+
+	# regular colors
+	local R="\[\033[0;31m\]"    # red
+	local G="\[\033[0;32m\]"    # green
+	local Y="\[\033[0;33m\]"    # yellow
+
+	#
+	### Set the Duration of the last command
+	#
+	ELAPSED_S="$(($SECONDS % 60))s"
+	ELAPSED_M=""
+	ELAPSED_H=""
+	if [[ $((( SECONDS / 60 ) % 60)) > 0 ]]; then
+		ELAPSED_M="$((($SECONDS / 60) % 60))m "
+	fi
+
+	if [[ $(( SECONDS / 3600 )) > 0 ]]; then
+		ELAPSED_H="$(($SECONDS / 3600))h "
+	fi
+
+	# ELAPSED="Elapsed SEC=${SECONDS} pc: ${ELAPSED}"
+
+	# ELAPSED="${G}$(($SECONDS % 60))sec${NONE}"
+	# if [[ $((( SECONDS / 60 ) % 60)) > 0 ]]; then
+	# 	ELAPSED="${Y}$((($SECONDS / 60) % 60))min${NONE} ${ELAPSED}"
+	# fi
+
+	# if [[ $(( SECONDS / 3600 )) > 0 ]]; then
+	# 	ELAPSED="${R}$(($SECONDS / 3600))hrs${NONE} ${ELAPSED}"
+	# fi
+
+	# ELAPSED="Elapsed SEC=${SECONDS} pc: ${ELAPSED}"
+
+	# ELAPSED="Elapsed: $(($SECONDS / 3600))hrs $((($SECONDS / 60) % 60))min $(($SECONDS % 60))sec"
+	# echo "Running bash_prompt_command ${SECONDS} ${ELAPSED}"
+
+	# Reset seconds for the next command.
+	# SECONDS=0
+	# echo $ELAPSED
+
+	#
+	### Set the PWD
+	#
 	# How many characters of the $PWD should be kept
 	local pwdmaxlen=25
 	# Indicate that there has been dir truncation
@@ -32,14 +76,25 @@ bash_prompt_command() {
 	fi
 }
 
+function before_command() {
+	case "$BASH_COMMAND" in
+		$PROMPT_COMMAND)
+			# echo "PROMPT_COMMAND running"
+			;;
+		*)
+			# echo "resetting SECONDS to 0 from ${SECONDS} for $BASH_COMMAND";
+			SECONDS=0;
+	esac
+}
+
 bash_prompt() {
 	case $TERM in
 	 xterm*|rxvt*)
-		 local TITLEBAR='\[\033]0;\h @ ${NEW_PWD}\007\]'
-		  ;;
+		local TITLEBAR='\[\033]0;\h @ ${NEW_PWD}\007\]'
+		;;
 	 *)
-		 local TITLEBAR=""
-		  ;;
+		local TITLEBAR=""
+		;;
 	esac
 	local NONE="\[\033[0m\]"    # unsets color to term's fg color
 
@@ -86,11 +141,28 @@ bash_prompt() {
 		#~ PROMPT_STATUS="${B}\!${NONE}"
 	#~ fi
 
+	#
+	### Set the Duration of the last command
+	#
+	# ELAPSED="${G}$(($SECONDS % 60))sec${NONE}"
+	# if [[ $((( SECONDS / 60 ) % 60)) > 0 ]]; then
+	# 	ELAPSED="${Y}$((($SECONDS / 60) % 60))min${NONE} ${ELAPSED}"
+	# fi
+
+	# if [[ $(( SECONDS / 3600 )) > 0 ]]; then
+	# 	ELAPSED="${R}$(($SECONDS / 3600))hrs${NONE} ${ELAPSED}"
+	# fi
+
+	# ELAPSED="Elapsed SEC=${SECONDS} p: ${ELAPSED}"
+
+	# ELAPSED="Elapsed SEC=$SECONDS SINCE=${SECONDS} p: $ELAPSED"
+
+
 	#~ PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h ${EMB}\${NEW_PWD}${EMK}]${UC}\\$ ${NONE}"
 	### Blake's Colors
 	### State - EMC NONE Y NONE W
 	#~ PS1="$TITLEBAR ${EMK}           [${UC}\u${EMK} @${UC}\h ${EMB}\${NEW_PWD}${EMK}]${UC}\\$ ${NONE}"
-	PS1="$TITLEBAR[${PROMPT_STATUS}][${UC}\u${NONE}@${Y}\h:${W}\${NEW_PWD}${NONE}]${UC}\\$ ${NONE}"
+	PS1="$TITLEBAR[$PROMPT_STATUS][${G}ELAPSED:${NONE} $R\${ELAPSED_H}$NONE$Y\${ELAPSED_M}$NONE$G\${ELAPSED_S}$NONE][${UC}\u${NONE}@${Y}\h:${W}\${NEW_PWD}${NONE}]${UC}\\$ ${NONE}"
 	# without colors: PS1="[\u@\h \${NEW_PWD}]\\$ "
 	# extra backslash in front of \$ to make bash colorize the prompt
 }
@@ -106,9 +178,11 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
+trap before_command DEBUG
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
+
 
 export PATH=/opt/bin:/opt/sbin:/usr/local/bin:$PATH:~/Unix/apache-ant/bin:~/Unix/ares-cli/bin
 
@@ -126,9 +200,9 @@ export PATH=/opt/bin:/opt/sbin:/usr/local/bin:$PATH:~/Unix/apache-ant/bin:~/Unix
 #~ esac
 
 ### Working with Unix
-alias l='ls -l'
+alias l='ls -lh'
 alias ll='ls -al'
-alias gl='gls -l --color=auto'
+alias gl='gls -lh --color=auto'
 alias gll='gl -a'
 alias p='ps x'
 alias pp='ps xa'
@@ -149,6 +223,20 @@ alias editcron='env EDITOR=nano crontab -e'
 
 ### Server Connections
 alias quakers='ssh -l quakers q3.mendelbio.com'
+##### Home Network4.59 128,038.65
+# ssh -A -t root@apt.resourcefork.com \ ssh -A -t rick@192.168.1.5
+ROUTER_ADDRESS='apt.resourcefork.com'
+CMD_SSH_ARC='ssh -A -t admin@192.168.1.9'
+CMD_SSH_MORTY='ssh -A -t root@192.168.1.6'
+CMD_SSH_RICK='ssh -A -t rick@192.168.1.5 screen -x -RR'
+CMD_SSH_ROUTER="ssh -A -t root@${ROUTER_ADDRESS}"
+CMD_SSH_ROUTER_LOCAL='ssh -A -t root@192.168.1.1'
+alias sshrouter=$CMD_SSH_ROUTER
+alias sshrouterlocal=$CMD_SSH_ROUTER_LOCAL
+alias sshrick="${CMD_SSH_ROUTER} \ ${CMD_SSH_RICK}"
+alias sshricklocal=$CMD_SSH_RICK
+alias ssharc="${CMD_SSH_ROUTER} \ ${CMD_SSH_ARC}"
+alias ssharclocal=$CMD_SSH_ARC
 
 ### Working with Perl
 alias build='perl Makefile.PL; make'
@@ -178,9 +266,14 @@ export CLICOLOR=1
 export LSCOLORS='dahebxBxDxehxxbxexGxac'
 
 ### LG Shortcuts
-alias enstall='npm install; enact link'
+alias enstall='npm install && enact link'
+alias echeck='ls -Alh node_modules/\@enact/'
 alias serve='npm run serve'
-alias qa='npm run serve-qa'
+alias serve-qa='npm run serve-qa'
+alias qa='serve-qa'
+alias serve1='serve -- -p 8081'
+alias serve2='serve -- -p 8082'
+alias serve3='serve -- -p 8083'
 alias testComponent='enact test start --single-run --browsers=PhantomJS'
 alias testComponentWatch='enact test start --browsers=PhantomJS'
 
@@ -211,7 +304,15 @@ fi
 # match is available.)
 
 bind '"\t":menu-complete'
-#bindkey "^I" complete-word-fwd
+# bindkey "^I" complete-word-fwd
+# history search up/down-arrow behavior. Start typing a word, then use arrow keys to search for
+# similar historical commands.
+# https://unix.stackexchange.com/questions/76566/where-do-i-find-a-list-of-terminal-key-codes-to-remap-shortcuts-in-bash
+if $PLAT_MAC ; then
+	# Mac specific(?) binds
+	bind '"\033[A":history-search-backward'
+	bind '"\033[B":history-search-forward'
+fi
 
 PERL_MB_OPT="--install_base \"/Users/blake/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/blake/perl5"; export PERL_MM_OPT;
