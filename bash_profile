@@ -40,10 +40,10 @@ ulimit -n 2560
 export PROFILECONFIGDIR="$HOME/.profileconfig"
 export MACHINECONFIGDIR="$PROFILECONFIGDIR/machine-configs/$HOSTNAME"
 source "$PROFILECONFIGDIR/prepare-rc-files.sh"
-screen -X setenv HOME "$HOME"
-screen -X setenv HOSTNAME "$HOSTNAME"
-screen -X setenv PROFILECONFIGDIR "$PROFILECONFIGDIR"
-screen -X setenv MACHINECONFIGDIR "$MACHINECONFIGDIR"
+# screen -X setenv HOME "$HOME"
+# screen -X setenv HOSTNAME "$HOSTNAME"
+# screen -X setenv PROFILECONFIGDIR "$PROFILECONFIGDIR"
+# screen -X setenv MACHINECONFIGDIR "$MACHINECONFIGDIR"
 
 # Load the machine version of this file
 source_machine_version bash_profile

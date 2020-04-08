@@ -6,8 +6,7 @@
 
 ### SSH Keys
 sshkeylg="$HOME/.ssh/id_rsa_lge"
-if [ -e "$sshkeylg" ]
-then
+if [[ -e "$sshkeylg" ]]; then
 	# set -v off
 	ssh-add "$sshkeylg"
 	# set -v on
@@ -18,12 +17,12 @@ fi
 # Set up Node Version Manager
 #
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export NVM_CURRENT=$(npm config --global get prefix)
 
 # Update the symlink that controls where the bin files are (added during webpack research)
-if [ -d "$NVM_DIR" ]
+if [[ -d "$NVM_DIR" ]]
 then
 	rm "$NVM_DIR/versions/node/current"
 	ln -s "$NVM_CURRENT" "$NVM_DIR/versions/node/current"

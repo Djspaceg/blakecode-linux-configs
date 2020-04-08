@@ -182,6 +182,13 @@ PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
 
+#
+# Set up the bash HISTFILE to save into the sessions folder with a name related to the shell and window
+#
+if [[ ! -e "$HOME/.bash_sessions" ]]; then
+	mkdir "$HOME/.bash_sessions"
+fi
+export HISTFILE="$HOME/.bash_sessions/$TERM.window.$WINDOW"
 
 #~ SMALL_PWD=`if [[ \`pwd|wc -c|tr -d " "\` > 25 ]]; then echo "/.../\\W"; else echo "\\w"; fi`;
 #~ SMALL_PWD=`if [[ \`pwd|wc -c\` > 25 ]]; then echo "/.../\\W"; else echo "\\w"; fi`;
