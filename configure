@@ -1,6 +1,7 @@
+#!/bin/bash
 
 SOURCEDIR=''
-PROFILECONFIGDIR="$HOME/.profileconfig"
+PROFILECONFIGDIR=${PROFILECONFIGDIR:-"$HOME/.profileconfig"}
 # SOURCEDIR="$HOME/.personalshare"
 
 if [[ "$SOURCEDIR" == "" ]]; then
@@ -14,6 +15,12 @@ fi
 
 MACHINECONFIGDIR="$SOURCEDIR/machine-configs/$HOSTNAME"
 
+
+function link-profile-file() {
+	local file=$1
+	make-symlink "$PROFILECONFIGDIR/$file" "$HOME/.$file"
+}
+
 function setup-source-file() {
 	local file=$1
 	make-symlink "$SOURCEDIR/$file" "$MACHINECONFIGDIR/$file"
@@ -22,8 +29,9 @@ function setup-source-file() {
 function setup-profile-file() {
 	local file=$1
 	setup-source-file "$file"
-	make-symlink "$PROFILECONFIGDIR/$file" "$HOME/.$file"
+	link-profile-file "$file"
 }
+
 
 function make-symlink() {
 	local source=$1
@@ -36,7 +44,7 @@ function make-symlink() {
 			echo Updating symlink: \""$source"\" \""$target"\"
 			# echo   source: "$(realpath \"$source\")"
 			# echo   target: "$(realpath \"$target\")"
-			ln -sf $source $target
+			ln -sf "$source" "$target"
 		else
 			# echo $source
 			# echo $target
@@ -53,20 +61,17 @@ function make-symlink() {
 }
 
 ### machine-specific config folder
-if [[ ! -d "$PROFILECONFIGDIR" ]]; then
-	make-symlink "$MACHINECONFIGDIR" "$PROFILECONFIGDIR"
-fi
-
+make-symlink "$SOURCEDIR" "$PROFILECONFIGDIR"
 
 ### Bash Profile
-setup-profile-file bash_profile
-setup-profile-file bashrc
+link-profile-file bash_profile
+link-profile-file bashrc
 
 # ### screen cfg
-setup-profile-file screenrc
-setup-source-file screenrccfg
+link-profile-file screenrc
+# setup-source-file screenrccfg
 
 # ### xterm cfg
-setup-profile-file Xresources
+link-profile-file Xresources
 
 echo Done.

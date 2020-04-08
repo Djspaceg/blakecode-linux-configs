@@ -1,1 +1,22 @@
-/Users/blake/Source/blakecode-linux-configs/bashrc
+# Tree-Fort.local/bashrc
+
+# echo "Running $HOSTNAME/bashrc"
+
+##############################################################################
+
+### Directories
+alias cdenact='cd ~/Source/enact'
+alias cdrigby='cd ~/Source/rigby'
+alias nodemodules='cd ~/.nvm/versions/node/current/lib/node_modules/'
+
+### LG Shortcuts
+alias enstall='npm install && enact link'
+alias echeck='ls -Alh node_modules/\@enact/'
+alias serve='npm run serve'
+alias serve-qa='npm run serve-qa'
+alias qa='serve-qa'
+alias serve1='serve -- -p 8081'
+alias serve2='serve -- -p 8082'
+alias serve3='serve -- -p 8083'
+alias testComponent='enact test start --single-run --browsers=PhantomJS'
+alias testComponentWatch='enact test start --browsers=PhantomJS'

@@ -1,36 +1,33 @@
+# Tree-Fort.local/screenrc
 
-##
-## Let's load our configuration,
-## so we don't go crazy, huh?
-##
-######################################################
-source "$HOME/.profileconfig/screenrccfg"
+echo "Running $HOSTNAME/screenrc"
 
+##############################################################################
 
 #~ screen -d -RR -t 'MB'   1 bash --init-file ~/.bash_profile
 #~ screen -d RR -t 'ApacheErr' 3 bash -c 'apacheerr -f'
 screen -t 0
 
 chdir $HOME/Source
-screen -t Working	1 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+screen -t Working	1 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
 
 chdir $HOME/Source/enact/packages
-screen -t Enact		2 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+screen -t Enact		2 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
 
 chdir $HOME/Source/enact-theme-sandstone/samples/sampler
-screen -t Sampler	3 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+screen -t Sampler	3 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
 
 chdir $HOME/Source/enact-samples
-screen -t App1		4 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+screen -t App1		4 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
 
 chdir $HOME/Source/enact-samples
-screen -t App2		5 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+screen -t App2		5 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
 
 chdir $HOME/Source/webos-auto-home
-screen -t App3		6 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+screen -t App3		6 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
 
 chdir $HOME/.ssh
-screen -t SSH		7 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+screen -t SSH		7 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
 
 chdir
 screen -t Serial	8 screen /dev/cu.usbserial 115200
@@ -38,7 +35,7 @@ screen -t Serial	8 screen /dev/cu.usbserial 115200
 # screen -t CommServer	9 bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
 # screen -t ApacheErr   8 bash -c 'tail -f /private/var/log/apache2/error_log'
 select 1
-select 0
+# select 0
 # stuff "mb\012"
 
 #~ screen -t sunfire01 0

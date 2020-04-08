@@ -1,1 +1,42 @@
-/Users/blake/Source/blakecode-linux-configs/bash_profile
+# Tree-Fort.local/bash_profile
+
+# echo "Running $HOSTNAME/bash_profile"
+
+##############################################################################
+
+### SSH Keys
+sshkeylg="$HOME/.ssh/id_rsa_lge"
+if [ -e "$sshkeylg" ]
+then
+	# set -v off
+	ssh-add "$sshkeylg"
+	# set -v on
+fi
+
+
+#
+# Set up Node Version Manager
+#
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_CURRENT=$(npm config --global get prefix)
+
+# Update the symlink that controls where the bin files are (added during webpack research)
+if [ -d "$NVM_DIR" ]
+then
+	rm "$NVM_DIR/versions/node/current"
+	ln -s "$NVM_CURRENT" "$NVM_DIR/versions/node/current"
+fi
+
+PERL_MB_OPT="--install_base \"/Users/blake/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/blake/perl5"; export PERL_MM_OPT;
+
+PERL_MB_OPT="--install_base \"/Users/blake/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/blake/perl5"; export PERL_MM_OPT;
+
+PATH="/Users/blake/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/blake/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/blake/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/blake/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/blake/perl5"; export PERL_MM_OPT;

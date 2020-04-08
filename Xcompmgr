@@ -35,4 +35,3 @@ case "$1" in
     "-s") stopcomp; exit ;;
       *) comphelp ;;
 esac
-

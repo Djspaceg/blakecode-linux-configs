@@ -1,7 +1,26 @@
+# screenrc
 
-##
-## Let's load our configuration,
-## so we don't go crazy, huh?
-##
-######################################################
-source "$HOME/.profileconfig/screenrccfg"
+echo "Running main screenrc"
+
+##############################################################################
+
+# echo "--v--"
+# echo "  HOME = $HOME"
+# echo "  HOSTNAME = $HOSTNAME"
+# echo "  PROFILECONFIGDIR = $PROFILECONFIGDIR"
+# echo "  MACHINECONFIGDIR = $MACHINECONFIGDIR"
+# echo "--\^--"
+
+# Set up the configuration, all the binds and options
+# echo "Loading: $PROFILECONFIGDIR/screenrccfg"
+source "$PROFILECONFIGDIR/screenrccfg"
+
+# Load the machine version of this file
+# echo "Loading: $MACHINECONFIGDIR/screenrc"
+source "$MACHINECONFIGDIR/screenrc"
+
+
+### None of the below works...
+
+# Load the machine version of this file
+# source_machine_version screenrc

@@ -2,6 +2,10 @@
 ## C-a :source .screenrc
 ##
 
+echo "Running main screenrccfg"
+
+##############################################################################
+
 ##########################################################################################
 ## Brak's screenrc (based off Shii's Easy Screenrc (based off of blcknight's screenrc)) ##
 ## Shii's Easy Screenrc : http://shii.org/knows/Screenrc                                ##
@@ -164,3 +168,8 @@ bindkey -m "^[[25T" stuff \004
 #############################################################################
 bind c screen bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
 bind ^C screen bash -ic 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+
+# Load the machine version of this file
+# source_machine_version screenrccfg
+source "$MACHINECONFIGDIR/screenrccfg"
