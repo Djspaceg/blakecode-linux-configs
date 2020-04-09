@@ -8,7 +8,7 @@ echo "Running main screenrc"
 # > ssh with a command will NOT start a login shell. Thus bash_profile is not sourced.
 # https://superuser.com/questions/952084/why-is-ssh-not-invoking-bash-profile
 # https://unix.stackexchange.com/questions/332531/why-does-remote-bash-source-bash-profile-instead-of-bashrc
-source bash_profile
+source "$HOME/.bash_profile"
 
 echo "--v--"
 echo "  HOME = $HOME"
