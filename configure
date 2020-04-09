@@ -40,7 +40,7 @@ function make-symlink() {
 	if [[ -f "$target" ]] || [[ -d "$target" ]] || [[ -h "$target" ]]; then
 	# if [[ -e "$target" ]]; then ## -e seems to not cooperate with all symlinks...
 
-		if [[ -h "$target" ]] && [[ "$(realpath $source)" != "$(realpath $target)" ]]; then
+		if [[ -h "$target" ]] && [[ $(readlink -n "$target") != $source ]]; then
 			echo Updating symlink: \""$source"\" \""$target"\"
 			# echo   source: "$(realpath \"$source\")"
 			# echo   target: "$(realpath \"$target\")"
@@ -50,7 +50,14 @@ function make-symlink() {
 			# echo $target
 			# echo This two are the same
 			# echo "   $(realpath $source)"
+			# echo "   $(readlink $source)"
 			# echo "   $(realpath $target)"
+			# echo "   $(readlink $target)"
+			# if [[ $(readlink -n "$target") == $source ]]; then
+			# 	echo "Target points to source already!"
+			# else
+			# 	echo "target points to some other place"
+			# fi
 			echo "  No need to create $source"
 		fi
 
@@ -67,11 +74,10 @@ make-symlink "$SOURCEDIR" "$PROFILECONFIGDIR"
 link-profile-file bash_profile
 link-profile-file bashrc
 
-# ### screen cfg
+### screen cfg
 link-profile-file screenrc
-# setup-source-file screenrccfg
 
-# ### xterm cfg
+### X11 cfg
 link-profile-file Xresources
 
 echo Done.
