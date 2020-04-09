@@ -4,19 +4,11 @@ echo "Running main screenrc"
 
 ##############################################################################
 
-# This is present to ensure that the bash_profile is executed on remote login connections like SSH
-# > ssh with a command will NOT start a login shell. Thus bash_profile is not sourced.
-# https://superuser.com/questions/952084/why-is-ssh-not-invoking-bash-profile
-# https://unix.stackexchange.com/questions/332531/why-does-remote-bash-source-bash-profile-instead-of-bashrc
-source "$HOME/.bash_profile"
-
 echo "--v--"
 echo "  HOME = $HOME"
 echo "  HOSTNAME = $HOSTNAME"
 echo "  PROFILECONFIGDIR = $PROFILECONFIGDIR"
-echo "  {PROFILECONFIGDIR} = ${PROFILECONFIGDIR}"
 echo "  MACHINECONFIGDIR = $MACHINECONFIGDIR"
-echo "  {MACHINECONFIGDIR} = ${MACHINECONFIGDIR}"
 echo "--\^--"
 
 # Set up the configuration, all the binds and options

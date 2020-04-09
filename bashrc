@@ -12,6 +12,13 @@ if [ -f /etc/bashrc ]; then
 	source /etc/bashrc
 fi
 
+if [[ -z "$PROFILECONFIGDIR" ]]; then
+	# This is present to ensure that the bash_profile is executed on remote login connections like SSH
+	# > ssh with a command will NOT start a login shell. Thus bash_profile is not sourced.
+	# https://superuser.com/questions/952084/why-is-ssh-not-invoking-bash-profile
+	# https://unix.stackexchange.com/questions/332531/why-does-remote-bash-source-bash-profile-instead-of-bashrc
+	source "$HOME/.bash_profile"
+fi
 
 ##########################
 ### SHELL CONFIGURATION
