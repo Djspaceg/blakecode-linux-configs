@@ -4,6 +4,12 @@ echo "Running main screenrc"
 
 ##############################################################################
 
+# This is present to ensure that the bash_profile is executed on remote login connections like SSH
+# > ssh with a command will NOT start a login shell. Thus bash_profile is not sourced.
+# https://superuser.com/questions/952084/why-is-ssh-not-invoking-bash-profile
+# https://unix.stackexchange.com/questions/332531/why-does-remote-bash-source-bash-profile-instead-of-bashrc
+source bash_profile
+
 echo "--v--"
 echo "  HOME = $HOME"
 echo "  HOSTNAME = $HOSTNAME"
@@ -177,7 +183,7 @@ bindkey -m "^[[25T" stuff \004
 #############################################################################
 # http://stackoverflow.com/questions/14914570/bash-how-do-i-get-the-command-history-in-a-screen-session
 #############################################################################
-HISTPATHBASE='~/.bash_sessions/screen.window.'
+HISTPATHBASE='${HOME}/.bash_sessions/screen.window.'
 bind c screen bash -ic 'HISTFILE=${HISTPATHBASE}${WINDOW} bash'
 bind ^C screen bash -ic 'HISTFILE=${HISTPATHBASE}${WINDOW} bash'
 
