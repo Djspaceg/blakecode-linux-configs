@@ -4,6 +4,29 @@
 
 ##############################################################################
 
+##
+## This caption will always appear at the bottom of the window.
+## To fiddle with it, read the man page for screen.
+##
+######################################################
+# Customized colors
+# caption string '%{= gw} %H %0` [%t] %h %= %l    %{-b W}%2`%{-}    %D %M %d %C%a '
+caption string '%{= gw} %1`    %2` %= %l    %{-b W}%2`%{-}    %D %M %d %C%a '
+# hardstatus string '%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{+b gY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{y}%+Lw%?%?%=%{-} ][ %{M}%Y-%m-%d %{W}%c%{= g}  ]'
+
+# Experimenting with unicode characters in the hardstatus
+# https://superuser.com/questions/344707/write-special-chars-in-hardstatus-of-gnu-screen
+#
+# hardstatus string '%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{+b gY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{y}%+Lw%?%?%=%{-} ][ %{Y}%Y-%m-%d %{W}%c%{= g}  ]'
+# hardstatus string '%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{.g}\xF0\xE2\x97\xA5%{+b gY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{y}%+Lw%?%?%=%{-} ][ %{Y}%Y-%m-%d %{W}%c%{= g}  ]'
+hardstatus string '%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{.g}◥%{+b gY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{.g}◤%{y}%+Lw%?%?%=%{-} ][ %{Y}%Y-%m-%d %{W}%c%{= g}  ]'
+
+
+
+##
+## Window Configs
+##
+######################################################
 screen -t 0
 
 chdir $HOME

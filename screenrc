@@ -58,8 +58,8 @@ zombie kr
 ## Commands used for backtick substitutions: %` %0` %1`
 ##
 ############################################################
-# backtick 0 0 1 pwd
-# backtick 1 0 1 uptime
+backtick 0 0 1 pwd
+backtick 1 0 1 $HOME/Source/blakecode-linux-configs/justuptime.sh
 backtick 2 0 5 $HOME/Source/blakecode-linux-configs/myip.sh
 
 
