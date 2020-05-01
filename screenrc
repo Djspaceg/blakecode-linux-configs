@@ -71,7 +71,8 @@ backtick 2 0 5 $HOME/Source/blakecode-linux-configs/myip.sh
 #
 caption always
 #~ caption string "%{= bw} %H [%t] %h %= uptime: %1` %D %M %d %C%a "
-caption string '%{= mw} %H %0` [%t] %h %= %l    %{-b W}%2`%{-}    %D %M %d %C%a '
+# caption string '%{= mw} %H %0` [%t] %h %= %l    %{-b W}%2`%{-}    %D %M %d %C%a '
+caption string '%{= mw} %1` %= %l    %{-b W}%2`%{-}    %D %M %d %C%a '
 #~ hardstatus off
 hardstatus alwayslastline
 #~ hardstatus alwaysfirstline
