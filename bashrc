@@ -255,7 +255,6 @@ if $PLAT_MAC ; then
 	alias pc='ps arcxo pid,pcpu,pmem,user,command | head -10'
 fi
 alias ip='ifconfig | grep "inet "'
-alias rmemptydirs="find -type d -exec bash -c 'shopt -s nullglob; shopt -s dotglob; files=(\"$1\"/*); [[ ${files[@]} ]] || rmdir \"$1\"' -- {} ;"
 alias rmignored='rm */*.ignore'
 
 alias dus='du -Psckx * | sort -nr'
@@ -270,30 +269,30 @@ alias quakers='ssh -l quakers q3.mendelbio.com'
 ROUTER_ADDRESS='apt.resourcefork.com'
 CMD_SSH_ARC='ssh -A -t admin@192.168.1.9'
 CMD_SSH_MORTY='ssh -A -t root@192.168.1.6'
-CMD_SSH_RICK='ssh -A -t rick@192.168.1.5 screen -x -RR'
+CMD_SSH_PILLAR='ssh -A -t blake@192.168.1.2 screen -x -RR -U'
+CMD_SSH_RICK='ssh -A -t rick@192.168.1.5 screen -x -RR -U'
 CMD_SSH_ROUTER="ssh -A -t root@${ROUTER_ADDRESS}"
 CMD_SSH_ROUTER_LOCAL='ssh -A -t root@192.168.1.1'
-alias sshrouter=$CMD_SSH_ROUTER
-alias sshrouterlocal=$CMD_SSH_ROUTER_LOCAL
-alias sshrick="${CMD_SSH_ROUTER} \ ${CMD_SSH_RICK}"
-alias sshricklocal=$CMD_SSH_RICK
 alias ssharc="${CMD_SSH_ROUTER} \ ${CMD_SSH_ARC}"
 alias ssharclocal=$CMD_SSH_ARC
+alias sshpillar="${CMD_SSH_ROUTER} \ ${CMD_SSH_PILLAR}"
+alias sshpillarlocal=$CMD_SSH_PILLAR
+alias sshrick="${CMD_SSH_ROUTER} \ ${CMD_SSH_RICK}"
+alias sshricklocal=$CMD_SSH_RICK
+alias sshrouter=$CMD_SSH_ROUTER
+alias sshrouterlocal=$CMD_SSH_ROUTER_LOCAL
 
 ### Working with Perl
 alias build='perl Makefile.PL; make'
 alias clean='make realclean'
 alias rebuild='clean; build'
-alias buildtest='perl Makefile.PL INSTALL_BASE=~/dev/stable INST_LIB=~/dev/testmodule INST_SCRIPT=~/dev/scripts'
-alias tt='./Build test --verbose 1 --test_files'
-alias t='./Build test --test_files'
+
 alias apacheerr='tail /var/log/httpd/error_log'
 if $PLAT_MAC ; then
 	alias apacheerr='tail /var/log/apache2/error_log'
 fi
-alias svnbranch='cd ~/src/mb/branches; svn copy http://svn.mendelbio.com/repos/compbio/mb/trunk'
-alias mbbranchmerge='svn merge http://svn.mendelbio.com/repos/compbio/mb/trunk'
-alias makeless='~/Source/enyo/tools/lessc.sh ./all-package.js'
+
+### Working with NodeJS
 alias npmreset='rm -rf node_modules package-lock.json'
 alias nvmupgrade='nvm alias default node && nvm install node --reinstall-packages-from=node'
 

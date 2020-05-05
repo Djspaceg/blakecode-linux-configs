@@ -22,3 +22,8 @@ alias testComponent='enact test start --single-run --browsers=PhantomJS'
 alias testComponentWatch='enact test start --browsers=PhantomJS'
 alias uitest='npm run test-ui -- --skip-enact --skip-ilib --spec'
 alias sstest='npm run test-ss -- --skip-enact --skip-ilib --component'
+
+# Quick jump-tos!
+alias agate='cd ~/Source/enact-theme-agate'
+alias moon='cd ~/Source/enact-theme-moonstone'
+alias sand='cd ~/Source/enact-theme-sandstone'
