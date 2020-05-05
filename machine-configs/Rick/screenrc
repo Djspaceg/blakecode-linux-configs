@@ -1,0 +1,37 @@
+# Pillar-of-Autumn.local/screenrc
+
+# echo "Running $HOSTNAME/screenrc"
+
+##############################################################################
+
+##
+## This caption will always appear at the bottom of the window.
+## To fiddle with it, read the man page for screen.
+##
+######################################################
+# Customized colors
+caption string '%{= bw} %1` %= %l    %{-b W}%2`%{-}    %D %M %d %C%a '
+hardstatus string '%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{+b bY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{y}%+Lw%?%?%=%{-} ][ %{Y}%Y-%m-%d %{W}%c%{= g}  ]'
+
+
+screen -t 0
+
+chdir $HOME
+screen -t Working	1 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+chdir $HOME/Source
+screen -t Source1	2 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+chdir $HOME/Source
+screen -t Source2	3 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+chdir $HOME/.ssh
+screen -t SSH		4 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+
+select 1
+
+
+#screen -t kw64 1 ssh root@132.234.103.72 -t 'screen -d -RR kw64'
+#screen -t spl2 2 ssh root@132.234.103.113 -t 'screen -d -RR spl2'
+#screen -t sunfire 3 ssh s1554463@132.234.222.1 -t 'screen -d -RR spl'
