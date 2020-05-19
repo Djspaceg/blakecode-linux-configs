@@ -24,7 +24,7 @@ echo "--\^--"
 ##
 ##########################################################################
 crlf off                    ## No Microsoft linebreaks.                 ##
-termcapinfo xterm* ti@:te@                                              ##
+termcapinfo screen* ti@:te@                                             ##
 startup_message off         ## Bypass the GPL notice, please.           ##
 vbell off                   ## Disable the visual bell alert.           ##
 autodetach on                                                           ##

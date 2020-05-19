@@ -13,17 +13,19 @@
 ##########################
 
 PLAT_NIX=true
+PLAT_LINUX=false
 PLAT_MAC=false
 
 case "$OSTYPE" in
   darwin*)  PLAT_MAC=true ;;
   solaris*) PLAT_NIX=true ;;
-  linux*)   PLAT_NIX=true ;;
-  bsd*)     PLAT_NIX=true ;;
+  linux*)   PLAT_NIX=true & PLAT_LINUX=true ;;
+  bsd*)     PLAT_NIX=true & PLAT_LINUX=true ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
 export PLAT_NIX
+export PLAT_LINUX
 export PLAT_MAC
 
 export PATH=/opt/bin:/opt/sbin:/usr/local/bin:$PATH:~/Unix/apache-ant/bin:~/Unix/ares-cli/bin

@@ -229,11 +229,11 @@ bind '"\t":menu-complete'
 # history search up/down-arrow behavior. Start typing a word, then use arrow keys to search for
 # similar historical commands.
 # https://unix.stackexchange.com/questions/76566/where-do-i-find-a-list-of-terminal-key-codes-to-remap-shortcuts-in-bash
-if $PLAT_MAC ; then
-	# Mac specific(?) binds
-	bind '"\033[A":history-search-backward'
-	bind '"\033[B":history-search-forward'
-fi
+# if $PLAT_MAC ; then
+	# Mac specific(?) binds -nope, works on deb
+bind '"\033[A":history-search-backward'
+bind '"\033[B":history-search-forward'
+# fi
 
 
 ###########################
@@ -243,9 +243,11 @@ fi
 
 ### Working with Unix
 alias l='ls -lh'
-alias ll='ls -al'
-alias gl='gls -lh --color=auto'
-alias gll='gl -a'
+alias ll='l -a'
+if $PLAT_LINUX ; then
+	alias l='ls -lh --color'
+	# alias ll='l -a --color'
+fi
 alias p='ps x'
 alias pp='ps xa'
 alias pm='ps -eo pid,pcpu,pmem,user,comm --sort -%cpu | head -10'
