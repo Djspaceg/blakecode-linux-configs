@@ -30,8 +30,9 @@ screen -t App3		6
 chdir $HOME/.ssh
 screen -t SSH		7
 
-chdir
-screen -t Serial	8 screen /dev/cu.usbserial 115200
+chdir $HOME/Source/tftp-root
+# screen -t Serial	8 screen /dev/cu.usbserial 115200
+screen -t Serial	8
 # chdir $HOME/Source/enact-agate-apps/communication-server
 # screen -t CommServer	9 bash -ic 'HISTFILE=${HISTPATHBASE}${WINDOW} bash'
 # screen -t ApacheErr   8 bash -c 'tail -f /private/var/log/apache2/error_log'

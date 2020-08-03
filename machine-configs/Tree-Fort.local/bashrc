@@ -22,6 +22,7 @@ alias testComponent='enact test start --single-run --browsers=PhantomJS'
 alias testComponentWatch='enact test start --browsers=PhantomJS'
 alias uitest='npm run test-ui -- --skip-enact --skip-ilib --spec'
 alias sstest='npm run test-ss -- --skip-enact --skip-ilib --component'
+alias startserial='screen -S serial-interface /dev/cu.usbserial 115200'
 
 # Quick jump-tos!
 alias agate='cd ~/Source/enact-theme-agate'

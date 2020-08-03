@@ -30,13 +30,13 @@ vbell off                   ## Disable the visual bell alert.           ##
 autodetach on                                                           ##
 altscreen on                                                            ##
 defscrollback 10000         ## Screen remembers more history.           ##
-defmousetrack on            ## Enable mouse support for clicking areas. ##
+defmousetrack off           ## Enable mouse support for clicking areas. ##
 shell bash                  ## Bash is a rather nice shell.             ##
 shelltitle "$ |bash"        ## Blank shell title                        ##
 defmonitor on               ## Turn monitoring on (see 'activity')      ##
 activity "Activity in window %n"    ## Let you know when stuff happens! ##
 msgminwait 0                ## Messages on the screen for at least X    ##
-msgwait 5                   ## Leave messages up for X.                 ##
+msgwait 3                   ## Leave messages up for X.                 ##
 sessionname main            ##                                          ##
 defutf8 on                  ##                                          ##
 nonblock on                 ##                                          ##
