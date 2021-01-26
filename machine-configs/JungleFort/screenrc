@@ -1,0 +1,49 @@
+# JungleFort.local/screenrc
+
+echo "Running ${HOSTNAME}/screenrc"
+
+
+##############################################################################
+
+screen -t 0
+
+chdir $HOME/workplace
+screen -t Workplace1    1
+
+chdir $HOME/workplace
+screen -t Workplace2    2
+
+chdir $HOME/workplace
+screen -t Workplace3    3
+
+chdir $HOME/Source
+screen -t Source1       4
+
+chdir $HOME/Source
+screen -t Source2       5
+
+chdir $HOME/.ssh
+screen -t CloudDesk     6 ssh clouddesk
+
+chdir $HOME/.ssh
+screen -t SSH           7
+
+# chdir $HOME/Source/tftp-root
+# screen -t Serial	8 screen /dev/cu.usbserial 115200
+# screen -t Serial	8
+# chdir $HOME/Source/enact-agate-apps/communication-server
+# screen -t CommServer	9 bash -ic 'HISTFILE=${HISTPATHBASE}${WINDOW} bash'
+# screen -t ApacheErr   8 bash -c 'tail -f /private/var/log/apache2/error_log'
+select 1
+# select 0
+# stuff "mb\012"
+
+#~ screen -t sunfire01 0
+#~ screen -t sunfire16 2 ssh s1554463@sunfire16
+#~ screen -t sunfire16 1 ssh s1554463@sunfire16
+
+#chdir /hr
+#screen -t acer 0
+#screen -t kw64 1 ssh root@132.234.103.72 -t 'screen -d -RR kw64'
+#screen -t spl2 2 ssh root@132.234.103.113 -t 'screen -d -RR spl2'
+#screen -t sunfire 3 ssh s1554463@132.234.222.1 -t 'screen -d -RR spl'

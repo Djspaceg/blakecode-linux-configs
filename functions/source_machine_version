@@ -1,0 +1,8 @@
+# "Sources" the machine version of the script that calls this.
+# It looks in the machine-configs folder for a matching file name.
+# Accepts an optional path or uses the curent script's name.
+function source_machine_version () {
+	local file=${1:-"$(basename -- $0)"}
+	# echo "   source_machine_version: $MACHINECONFIGDIR/$file"
+	source_optional "$MACHINECONFIGDIR/$file"
+}

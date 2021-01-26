@@ -2,6 +2,7 @@
 # Difference between all of these files:
 # https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
 
+echo "Running ~/zshrc"
 
 #
 # Set up the zsh HISTFILE to save into the sessions folder with a name related to the shell and window
@@ -24,6 +25,10 @@ export HISTFILE="$HOME/.zsh_sessions/$TERM.window.$WINDOW"
 	#~ *) PS1="${PS1}$ ";;
 #~ esac
 
+
+# Custom prompt:
+#    JungleFort: ~/Source $
+PS1='%F{green}${HOSTNAME}%f: %F{cyan}%25<…<%~/%f %F{yellow}%(!.#.$)%f '
 
 export CLICOLOR=1
 export LSCOLORS='dahebxBxDxehxxbxexGxac'
@@ -118,6 +123,3 @@ alias ..='cd ..'
 
 # Load the machine version of this file
 source_machine_version zshrc
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-

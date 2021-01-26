@@ -1,0 +1,8 @@
+# Sources a given file, if it exists
+function source_optional () {
+	local file=$1
+	if [[ -e "$file" ]]; then
+		# echo "   source_optional: $file"
+		source "$file"
+	fi
+}

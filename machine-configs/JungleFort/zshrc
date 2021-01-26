@@ -1,4 +1,4 @@
-# 147dda7d0e0a.ant.amazon.com/zshrc
+# JungleFort/zshrc
 
 echo "Running $HOSTNAME/zshrc"
 
@@ -12,3 +12,13 @@ alias sshcloud='ssh stepblk-clouddesk.aka.corp.amazon.com'
 
 # Re-establish a secure connection to the intranet
 alias auth='kinit && mwinit -o'
+
+
+
+## Add iTerm integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+## Setup for NVM (auto-generated at install time)
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion

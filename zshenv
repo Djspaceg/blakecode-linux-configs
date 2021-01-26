@@ -1,9 +1,9 @@
-# bash_profile
+# zshenv
 #
-# Bash login, execute once-per-session type of stuff
+# Zsh login, execute once-per-session type of stuff
 #
 
-# echo "Running main bash_profile"
+echo "Running ~/zshenv"
 
 ##############################################################################
 
@@ -12,7 +12,16 @@
 ### Execute Once Per Login
 ##########################
 
-export HOSTNAME=$(hostname)
+# Enable variables in the prompt
+setopt prompt_subst
+
+# Use a custom host name, for loading config files etc, if the file exists
+if [[ -e "$HOME/.bc-hostname" ]]; then
+    export HOSTNAME=$(cat $HOME/.bc-hostname)
+else
+    export HOSTNAME=$(hostname)
+fi
+
 
 PLAT_NIX=true
 PLAT_LINUX=false
@@ -21,9 +30,9 @@ PLAT_MAC=false
 case "$OSTYPE" in
   darwin*)  PLAT_MAC=true ;;
   solaris*) PLAT_NIX=true ;;
-#   linux*)   PLAT_NIX=true & PLAT_LINUX=true ;;
-#   bsd*)     PLAT_NIX=true & PLAT_LINUX=true ;;
-  *)        echo "unknown: $OSTYPE" ;;
+  linux*)   PLAT_NIX=true && PLAT_LINUX=true ;;
+  bsd*)     PLAT_NIX=true && PLAT_LINUX=true ;;
+  *)        echo "OS Detection failed. \$OSTYPE '$OSTYPE' unknown." ;;
 esac
 
 export PLAT_NIX

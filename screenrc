@@ -31,8 +31,8 @@ autodetach on                                                           ##
 altscreen on                                                            ##
 defscrollback 10000         ## Screen remembers more history.           ##
 defmousetrack off           ## Enable mouse support for clicking areas. ##
-shell bash                  ## Bash is a rather nice shell.             ##
-shelltitle "$ |bash"        ## Blank shell title                        ##
+# shell bash                  ## Bash is a rather nice shell.             ##
+# shelltitle "$ |bash"        ## Blank shell title                        ##
 defmonitor on               ## Turn monitoring on (see 'activity')      ##
 activity "Activity in window %n"    ## Let you know when stuff happens! ##
 msgminwait 0                ## Messages on the screen for at least X    ##
