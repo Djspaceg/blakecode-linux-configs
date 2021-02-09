@@ -13,7 +13,9 @@ alias sshcloud='ssh stepblk-clouddesk.aka.corp.amazon.com'
 # Re-establish a secure connection to the intranet
 alias auth='kinit && mwinit -o'
 
-
+alias bb='brazil-build'
+alias bbs='bb start'
+alias bsync='brazil ws --sync --md'
 
 ## Add iTerm integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
