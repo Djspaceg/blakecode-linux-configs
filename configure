@@ -74,6 +74,7 @@ make-symlink "$SOURCEDIR" "$PROFILECONFIGDIR"
 link-profile-file bash_profile
 link-profile-file bashrc
 link-profile-file zshenv
+link-profile-file zprofile
 link-profile-file zshrc
 
 ### screen cfg

@@ -1,0 +1,9 @@
+# AmazonCloudDesk/zshenv
+
+echo "Running $HOSTNAME/zshenv"
+
+##############################################################################
+
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+
+export AUTO_TITLE_SCREENS="NO"

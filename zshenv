@@ -39,13 +39,6 @@ export PLAT_NIX
 export PLAT_LINUX
 export PLAT_MAC
 
-export PATH=/opt/bin:/opt/sbin:/usr/local/bin:$PATH:~/Unix/apache-ant/bin:~/Unix/ares-cli/bin
-
-
-### Setup enyo-dev compiling
-# ulimit -n 2560
-
-
 #
 # Configure global variables to make loading machine-specific configs easier
 # and more consistent across multiple files
@@ -53,10 +46,6 @@ export PATH=/opt/bin:/opt/sbin:/usr/local/bin:$PATH:~/Unix/apache-ant/bin:~/Unix
 export PROFILECONFIGDIR="$HOME/.profileconfig"
 export MACHINECONFIGDIR="$PROFILECONFIGDIR/machine-configs/$HOSTNAME"
 source "$PROFILECONFIGDIR/prepare-rc-files.sh"
-# screen -X setenv HOME "$HOME"
-# screen -X setenv HOSTNAME "$HOSTNAME"
-# screen -X setenv PROFILECONFIGDIR "$PROFILECONFIGDIR"
-# screen -X setenv MACHINECONFIGDIR "$MACHINECONFIGDIR"
 
 # Load the machine version of this file
 source_machine_version zshenv

@@ -4,14 +4,11 @@ echo "Running $HOSTNAME/zshenv"
 
 ##############################################################################
 
-export PATH=$HOME/.toolbox/bin:$PATH
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 
 ### $ brew install rbenv libyaml libffi
-
-# To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following
-# to your ~/.zshrc:
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 # libffi is keg-only, which means it was not symlinked into /usr/local,
 # because macOS already provides this software and installing another version in

@@ -1,0 +1,7 @@
+# AmazonCloudDesk/zprofile
+
+echo "Running $HOSTNAME/zprofile"
+
+##############################################################################
+
+export PATH=$HOME/.toolbox/bin:$PATH

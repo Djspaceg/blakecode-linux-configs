@@ -1,7 +1,10 @@
-export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+# AmazonCloudDesk/zshrc
 
-export AUTO_TITLE_SCREENS="NO"
+echo "Running $HOSTNAME/zshrc"
 
+##############################################################################
+
+### Prompt
 export PROMPT="
 %{$fg[white]%}(%D %*) <%?> [%~] $program %{$fg[default]%}
 %{$fg[cyan]%}%m %#%{$fg[default]%} "
@@ -18,6 +21,7 @@ ssh() {
     set-title $HOST;
 }
 
+### Aliases
 alias e=emacs
 alias bb=brazil-build
 
@@ -33,5 +37,6 @@ alias bball='brc --allPackages'
 alias bbb='brc --allPackages brazil-build'
 alias bbra='bbr apollo-pkg'
 
-
-export PATH=$HOME/.toolbox/bin:$PATH
+## My Brazil Aliases
+alias bbs='bb start'
+alias bsync='brazil ws --sync --md'
