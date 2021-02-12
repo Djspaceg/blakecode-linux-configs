@@ -15,14 +15,6 @@ echo "Running ~/zshenv"
 # Enable variables in the prompt
 setopt prompt_subst
 
-# Use a custom host name, for loading config files etc, if the file exists
-if [[ -e "$HOME/.bc-hostname" ]]; then
-    export HOSTNAME=$(cat $HOME/.bc-hostname)
-else
-    export HOSTNAME=$(hostname)
-fi
-
-
 PLAT_NIX=true
 PLAT_LINUX=false
 PLAT_MAC=false
@@ -44,7 +36,8 @@ export PLAT_MAC
 # and more consistent across multiple files
 #
 export PROFILECONFIGDIR="$HOME/.profileconfig"
-export MACHINECONFIGDIR="$PROFILECONFIGDIR/machine-configs/$HOSTNAME"
+# NOTE: Commented next line since it should be handled by the prepare-rc-files script.
+# export MACHINECONFIGDIR="$PROFILECONFIGDIR/machine-configs/$HOSTNAME"
 source "$PROFILECONFIGDIR/prepare-rc-files.sh"
 
 # Load the machine version of this file

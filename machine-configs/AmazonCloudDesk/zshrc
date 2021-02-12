@@ -40,3 +40,8 @@ alias bbra='bbr apollo-pkg'
 ## My Brazil Aliases
 alias bbs='bb start'
 alias bsync='brazil ws --sync --md'
+
+# BrazilThirdPartyTool
+# https://builderhub.corp.amazon.com/docs/cloud-desktop/user-guide/setup-post.html#brazilthirdpartytool
+alias third-party-promote='~/.toolbox/bin/brazil-third-party-tool promote'
+alias third-party='~/.toolbox/bin/brazil-third-party-tool'
