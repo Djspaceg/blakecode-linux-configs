@@ -5,11 +5,11 @@ echo "Running $HOSTNAME/zshrc"
 ##############################################################################
 
 ### Prompt
-export PROMPT="
-%{$fg[white]%}(%D %*) <%?> [%~] $program %{$fg[default]%}
-%{$fg[cyan]%}%m %#%{$fg[default]%} "
+# export PROMPT="
+# %{$fg[white]%}(%D %*) <%?> [%~] $program %{$fg[default]%}
+# %{$fg[cyan]%}%m %#%{$fg[default]%} "
 
-export RPROMPT=
+# export RPROMPT=
 
 set-title() {
     echo -e "\e]0;$*\007"
