@@ -4,4 +4,12 @@ echo "Running $HOSTNAME/zprofile"
 
 ##############################################################################
 
+source /apollo/env/envImprovement/var/zshrc
+
+for f in SDETools envImprovement AmazonAwsCli OdinTools; do
+    if [[ -d /apollo/env/$f ]]; then
+        export PATH=$PATH:/apollo/env/$f/bin
+    fi
+done
+
 export PATH=$HOME/.toolbox/bin:$PATH

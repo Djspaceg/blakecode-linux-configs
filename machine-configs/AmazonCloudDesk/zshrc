@@ -45,3 +45,7 @@ alias bsync='brazil ws --sync --md'
 # https://builderhub.corp.amazon.com/docs/cloud-desktop/user-guide/setup-post.html#brazilthirdpartytool
 alias third-party-promote='~/.toolbox/bin/brazil-third-party-tool promote'
 alias third-party='~/.toolbox/bin/brazil-third-party-tool'
+
+if [ -f ~/.zshrc-dev-dsk-post ]; then
+    source ~/.zshrc-dev-dsk-post
+fi
