@@ -1,6 +1,6 @@
 # AmazonCloudDesk/zshenv
 
-echo "Running $HOSTNAME/zshenv"
+# echo "Running $HOSTNAME/zshenv"
 
 ##############################################################################
 

@@ -3,7 +3,8 @@
 # Zsh login, execute once-per-session type of stuff
 #
 
-echo "Running ~/zshenv"
+# env file should not print anything, because it messes with rsync and other headless apps.
+# echo "Running ~/zshenv"
 
 ##############################################################################
 

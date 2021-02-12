@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Preparing RC files"
+# echo "Preparing RC files"
 
 # Order of operations is important in this file.
 

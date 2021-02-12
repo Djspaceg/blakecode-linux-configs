@@ -1,6 +1,6 @@
 # JungleFort/zshenv
 
-echo "Running $HOSTNAME/zshenv"
+# echo "Running $HOSTNAME/zshenv"
 
 ##############################################################################
 
