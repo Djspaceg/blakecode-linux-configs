@@ -1,0 +1,4 @@
+# Special command to set the title of a terminal to whatever follows "set-title"
+function set-title () {
+  echo -e "\e]0;$*\007"
+}

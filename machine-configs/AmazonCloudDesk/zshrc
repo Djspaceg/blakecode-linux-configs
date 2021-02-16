@@ -11,15 +11,14 @@ echo "Running $HOSTNAME/zshrc"
 
 # export RPROMPT=
 
-set-title() {
-    echo -e "\e]0;$*\007"
-}
-
 ssh() {
     set-title $*;
     /usr/bin/ssh -2 $*;
     set-title $HOST;
 }
+
+# Re-establish a secure connection to the intranet
+alias auth='kinit && mwinit -o'
 
 ### Aliases
 alias e=emacs
@@ -39,7 +38,7 @@ alias bbra='bbr apollo-pkg'
 
 ## My Brazil Aliases
 alias bbs='bb start'
-alias bsync='brazil ws --sync --md'
+alias bsync='brazil ws --sync'
 
 # BrazilThirdPartyTool
 # https://builderhub.corp.amazon.com/docs/cloud-desktop/user-guide/setup-post.html#brazilthirdpartytool

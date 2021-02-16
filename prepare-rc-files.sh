@@ -8,7 +8,7 @@ export FPATH=$PROFILECONFIGDIR/functions:$FPATH
 
 # Configure auto-load of defined functions
 # http://zsh.sourceforge.net/Intro/intro_4.html
-autoload custom_hostname source_optional source_machine_version
+autoload custom_hostname source_optional source_machine_version set-title
 
 # Actually execute the custom_hostname script, setting the $HOSTNAME variable
 custom_hostname

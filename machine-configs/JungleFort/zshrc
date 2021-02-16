@@ -4,6 +4,12 @@ echo "Running $HOSTNAME/zshrc"
 
 ##############################################################################
 
+ssh() {
+    set-title $*;
+    /usr/bin/ssh -2 $*;
+    set-title $HOST;
+}
+
 # The original name for the workspace cloud machine
 alias sshcloudorig='ssh dev-dsk-stepblk-2c-d12d5e80.us-west-2.amazon.com'
 # A "convenient" alias to the machine, set by:
@@ -31,7 +37,7 @@ alias bbra='bbr apollo-pkg'
 
 ## My Brazil Aliases
 alias bbs='bb start'
-alias bsync='brazil ws --sync --md'
+alias bsync='brazil ws --sync'
 
 ## Add iTerm integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
