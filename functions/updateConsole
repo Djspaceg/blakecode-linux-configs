@@ -1,8 +1,8 @@
 function dump_description {
    echo '======================================================'
-   for i in $(seq 0 3); do echo ''; done
+   for i in $(seq 0 2); do echo ''; done
    echo $1
-   for i in $(seq 0 3); do echo ''; done
+   for i in $(seq 0 2); do echo ''; done
    echo '======================================================'
 } 
 
@@ -12,7 +12,7 @@ dump_description "bb release"
 if [ $? != 0 ]
 then
     dump_description '"bb release" failed'
-    exit
+    return
 fi
 
 dump_description "brazil ws env update"
@@ -21,7 +21,7 @@ dump_description "brazil ws env update"
 if [ $? != 0 ]
 then
     dump_description '"brazil ws env update" failed'
-    exit
+    return
 fi
 
 dump_description "sudo runCommand -a Activate -e LilyConsole"
@@ -30,5 +30,5 @@ sudo /apollo/bin/runCommand -a Activate -e LilyConsole
 if [ $? != 0 ]
 then
     dump_description '"sudo runCommand -a Activate -e LilyConsole" failed'
-    exit
+    return
 fi
