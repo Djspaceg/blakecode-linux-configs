@@ -8,4 +8,7 @@ export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
 
 export AUTO_TITLE_SCREENS="NO"
 
-export PATH=/apollo/env/NodeJS/bin:$PATH:$HOME/.local/bin:$HOME/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export PATH=$HOME/.toolbox/bin:$PATH
+export PATH="/apollo/env/AmazonAwsCli/bin/:$PATH"
+export PATH="/apollo/env/NodeJS/bin:$PATH"
