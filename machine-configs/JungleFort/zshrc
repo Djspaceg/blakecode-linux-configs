@@ -17,7 +17,7 @@ alias sshcloudorig='ssh dev-dsk-stepblk-2c-d12d5e80.us-west-2.amazon.com'
 alias sshcloud='ssh stepblk-clouddesk.aka.corp.amazon.com'
 
 # Re-establish a secure connection to the intranet
-alias auth='kinit && mwinit -o'
+alias auth='kinit && mwinit -s -o'
 
 ### Aliases
 alias e=emacs
@@ -38,6 +38,41 @@ alias bbra='bbr apollo-pkg'
 ## My Brazil Aliases
 alias bbs='bb start'
 alias bsync='brazil ws --sync'
+alias bsync='brazil ws --sync'
+
+alias cdlocke='cd ~/workplace/locke/locke-console/src'
+alias cdlily='cd ~/workplace/locke/lily-console/src'
+alias cdconsole='cd ~/workplace/locke/locke-console/src/AWSLockeConsole'
+alias cdcdk='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleCDK'
+alias cdtests='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleTests'
+alias cdhalo='cd ~/workplace/halo/halo-lr-app/src/HaloLRApp'
+
+buildcdk() {
+    echo " -------------------------------------------------------------------";
+    echo "   Releasing using stack: $1";
+    echo "   Using account ID: $AWS_ACCOUNT_ID";
+    echo " -------------------------------------------------------------------";
+    brazil-build release;
+
+    # Continue only if successful
+    if [ $? -eq 0 ]; then
+        echo "";
+        echo "Deploying Assets with $1";
+        brazil-build deploy:assets $1;
+
+        # Continue only if successful
+        if [ $? -eq 0 ]; then
+            echo "";
+            echo "Deploying CDK with $1";
+            brazil-build cdk deploy $1;
+        fi
+    fi
+}
+alias getstacks='brazil-build cdk ls'
+alias getuserstack='brazil-build cdk ls | grep BONESBootstrap-${USER}'
+
+## My BATS Debugging Aliases
+alias batslog='bats transform --transformer AWSLambda-1.0 --target $(basename $PWD)-1.0 --parameter $(basename $PWD)-1.0 -o build/private/tmp/'
 
 ## Add iTerm integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

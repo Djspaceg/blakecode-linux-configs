@@ -22,7 +22,12 @@ export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 
 # AWS Account ID, used by AWSLockeConsoleCDK
 # AWSLockeConsoleCDK = 776501286848
-export AWS_ACCOUNT_ID=776501286848
+# export AWS_ACCOUNT_ID=776501286848
+export AWS_ACCOUNT_ID=356079508319
+# export AWS_ACCOUNT_ID=130455107142
+
+export AWS_LOCKE_DEV_STACK=AWSLockeConsole-us-west-2-alpha-LocalDevStack
+export AWS_LOCKE_DEV_STACK_FAC=AWSLockeConsoleFeatureConfig-us-west-2-alpha-LocalDevStack
 
 # TangerineBox Setup for local dev
 export USE_WEBPACK_DEV_SERVER_ASSETS=true

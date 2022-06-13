@@ -5,29 +5,36 @@ echo "Running ${HOSTNAME}/screenrc"
 
 ##############################################################################
 
+source screenrc-tabs
+
 screen -t 0
 
 chdir $HOME/workplace
-screen -t Workplace1    1
+screen -t General  1
 
-chdir $HOME/workplace
-screen -t Workplace2    2
+chdir $HOME/workplace/halo/halo-lr-app/src/HaloLRApp
+screen -t App  2
 
-chdir $HOME/workplace
-screen -t Workplace3    3
+chdir $HOME/workplace/halo/halo-lr-app/src/HaloLRApp
+screen -t AppServe  3
+
+chdir $HOME/workplace/halo/halo-lr-app/src/HaloLRApp
+screen -t AppStory  4
+
+chdir $HOME/workplace/halo/halo-lr-app/src
+screen -t Halo  5
 
 chdir $HOME/Source
-screen -t Source1       4
-
-chdir $HOME/Source
-screen -t Source2       5
+screen -t Source  6
 
 chdir $HOME/.ssh
-screen -t CloudDesk     6 ssh clouddesk
+screen -t SSH  7
 
 chdir $HOME/.ssh
-screen -t SSH           7
+screen -t SSH2  8
 
+# chdir $HOME/.ssh
+# screen -t CloudDesk     6 ssh clouddesk
 # chdir $HOME/Source/tftp-root
 # screen -t Serial	8 screen /dev/cu.usbserial 115200
 # screen -t Serial	8
