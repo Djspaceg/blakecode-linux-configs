@@ -7,3 +7,5 @@
 export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
 
 export AUTO_TITLE_SCREENS="NO"
+
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin
