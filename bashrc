@@ -305,5 +305,3 @@ alias webroot='cd /var/www/html'
 
 # Load the machine version of this file
 source_machine_version bashrc
-
-export PATH=$HOME/.toolbox/bin:$PATH
