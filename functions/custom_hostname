@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Use a custom host name, for loading config files etc, if the file exists
 function custom_hostname() {
   local output

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # "Sources" the machine version of the script that calls this.
 # It looks in the machine-configs folder for a matching file name.
 # Accepts an optional path or uses the curent script's name.

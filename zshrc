@@ -123,3 +123,10 @@ alias ..='cd ..'
 
 # Load the machine version of this file
 source_machine_version zshrc
+
+# bun completions
+[ -s "/Users/stepblk/.bun/_bun" ] && source "/Users/stepblk/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

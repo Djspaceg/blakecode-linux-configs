@@ -1,0 +1,25 @@
+# CandyKingdom/zshenv
+
+# echo "Running $HOSTNAME/zshenv"
+
+##############################################################################
+
+# Setup process documented here:
+# https://builderhub.corp.amazon.com/docs/brazil/cli-guide/setup-macos.html
+
+export PATH=$HOME/.toolbox/bin:$PATH
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
+
+# ==> node@12
+# node@12 is keg-only, which means it was not symlinked into /opt/homebrew,
+# because this is an alternate version of another formula.
+#
+# For compilers to find node@12 you may need to set:
+export LDFLAGS="-L/opt/homebrew/opt/node@18/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/node@18/include"
+
+export JAVA_HOME=\"$(/usr/libexec/java_home)\"
+
+# Getting the device emulator installed. The following was added during the Python2 install process.
+# https://ignition.av-lr.a2z.com/onboarding/platform-onboarding/macos.html
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"

@@ -1,0 +1,11 @@
+# CandyKingdom/zprofile
+
+echo "Running $HOSTNAME/zprofile"
+
+##############################################################################
+
+# To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following
+# to your ~/.zshrc:
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

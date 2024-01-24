@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Sources a given file, if it exists
 function source_optional () {
 	local file=$1

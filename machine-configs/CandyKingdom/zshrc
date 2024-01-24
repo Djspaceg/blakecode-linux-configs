@@ -1,0 +1,89 @@
+
+# CandyKingdom/zshrc
+
+echo "Running $HOSTNAME/zshrc"
+
+##############################################################################
+
+ssh() {
+    set-title $*;
+    /usr/bin/ssh -2 $*;
+    set-title $HOST;
+}
+
+# The original name for the workspace cloud machine
+alias sshcloudorig='ssh dev-dsk-stepblk.us-west-2.amazon.com'
+# A "convenient" alias to the machine, set by:
+# https://dns-manage-web.corp.proxy.amazon.com/cgi-bin/cname-editor.cgi
+alias sshcloud='ssh stepblk.aka.corp.amazon.com'
+# Alkai EC2 dev server
+alias sshalkai='ssh -i "~/.ssh/ihop-webserver.pem" -l ec2-user 192.168.255.200'
+
+# Re-establish a secure connection to the intranet
+alias auth='mwinit -s -o'
+# alias auth='kinit && mwinit --aea -s -o'
+
+### Aliases
+alias e=emacs
+alias bb=brazil-build
+
+alias bba='brazil-build apollo-pkg'
+alias bre='brazil-runtime-exec'
+alias brc='brazil-recursive-cmd'
+alias bws='brazil ws'
+alias bwsuse='bws use --gitMode -p'
+alias bwscreate='bws create -n'
+alias brc=brazil-recursive-cmd
+alias bbr='brc brazil-build'
+alias bball='brc --allPackages'
+alias bbb='brc --allPackages brazil-build'
+alias bbra='bbr apollo-pkg'
+
+## My Brazil Aliases
+alias bbs='bb start'
+alias bsync='bws --sync'
+alias bsm='bsync --md'
+
+alias cdlocke='cd ~/workplace/locke/locke-console/src'
+alias cdlily='cd ~/workplace/locke/lily-console/src'
+alias cdconsole='cd ~/workplace/locke/locke-console/src/AWSLockeConsole'
+alias cdcdk='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleCDK'
+alias cdtests='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleTests'
+alias cdhalo='cd ~/workplace/halo/halo-lr-app/src/HaloLRApp'
+
+buildcdk() {
+    echo " -------------------------------------------------------------------";
+    echo "   Releasing using stack: $1";
+    echo "   Using account ID: $AWS_ACCOUNT_ID";
+    echo " -------------------------------------------------------------------";
+    brazil-build release;
+
+    # Continue only if successful
+    if [ $? -eq 0 ]; then
+        echo "";
+        echo "Deploying Assets with $1";
+        brazil-build deploy:assets $1;
+
+        # Continue only if successful
+        if [ $? -eq 0 ]; then
+            echo "";
+            echo "Deploying CDK with $1";
+            brazil-build cdk deploy $1;
+        fi
+    fi
+}
+alias getstacks='brazil-build cdk ls'
+alias getuserstack='brazil-build cdk ls | grep BONESBootstrap-${USER}'
+
+## My BATS Debugging Aliases
+alias batslog='bats transform --transformer AWSLambda-1.0 --target $(basename $PWD)-1.0 --parameter $(basename $PWD)-1.0 -o build/private/tmp/'
+
+## Add iTerm integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+## Setup for NVM (auto-generated at install time)
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

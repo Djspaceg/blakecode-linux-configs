@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function dump_description {
    echo '======================================================'
    for i in $(seq 0 2); do echo ''; done
