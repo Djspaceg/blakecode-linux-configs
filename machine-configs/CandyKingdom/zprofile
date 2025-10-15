@@ -1,11 +1,18 @@
 # CandyKingdom/zprofile
+#
+# Machine-specific login shell configuration
+# Runs for LOGIN shells only
+#
 
 echo "Running $HOSTNAME/zprofile"
 
 ##############################################################################
 
-# To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following
-# to your ~/.zshrc:
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# Standard macOS paths (append to avoid shadowing machine-specific paths)
+export PATH="$PATH:/usr/local/bin"
 
+# Initialize Homebrew environment
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded)
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"

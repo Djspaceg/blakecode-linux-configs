@@ -1,6 +1,6 @@
-# CandyKingdom/zshenv
+# CandyKingdom/bash_env
 #
-# Machine-specific environment variables only
+# Machine-specific environment variables for bash
 # Runs for EVERY shell invocation
 #
 
@@ -25,3 +25,6 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # Getting the device emulator installed. The following was added during the Python2 install process.
 # https://ignition.av-lr.a2z.com/onboarding/platform-onboarding/macos.html
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+
+### Setup enyo-dev compiling
+ulimit -n 65536

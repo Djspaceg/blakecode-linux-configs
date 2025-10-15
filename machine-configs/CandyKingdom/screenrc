@@ -10,31 +10,31 @@ source screenrc-tabs
 screen -t 0
 
 chdir $HOME/workplace/alkai/AlkaiUI/src
-screen -t General  1
+screen -t General   1
+
+chdir $HOME/workplace/transformer/Transformer-Bumblebee/src/Transformer-BumblebeeUI
+screen -t BB-UI     2
+
+chdir $HOME/workplace/transformer/Transformer-Bumblebee/src/Transformer-BumblebeeCDK
+screen -t BB-CDK    3
 
 chdir $HOME/workplace/alkai/AlkaiUI/src/AlkaiUIConfig
-screen -t Config  2
+screen -t Config    4
 
-chdir $HOME/workplace/alkai/AlkaiUI/src/AlkaiUI
-screen -t UI  3
+chdir $HOME/workplace/alkai/AlkaiUI/src/AlkaiUI/lib
+screen -t UI        5
 
 chdir $HOME/workplace/alkai/AlkaiUI/src/AlkaiUIApps/apps
-screen -t App  4
-
-chdir $HOME/workplace/alkai/AlkaiUI/src/AlkaiUIApps
-screen -t AppBuild  5
-
-chdir $HOME/workplace/alkai/AlkaiUI/src/AlkaiUIApps
-screen -t AppSync  6
+screen -t App       6
 
 chdir $HOME/Source
-screen -t Source  7
+screen -t Source    7
 
 chdir $HOME/.ssh
-screen -t SSH  8
+screen -t SSH       8
 
 chdir $HOME/.ssh
-screen -t SSH2  9
+screen -t SSH2      9
 
 # chdir $HOME/.ssh
 # screen -t CloudDesk     6 ssh clouddesk
@@ -44,7 +44,7 @@ screen -t SSH2  9
 # chdir $HOME/Source/enact-agate-apps/communication-server
 # screen -t CommServer	9 bash -ic 'HISTFILE=${HISTPATHBASE}${WINDOW} bash'
 # screen -t ApacheErr   8 bash -c 'tail -f /private/var/log/apache2/error_log'
-select 1
+select 2
 # select 0
 # stuff "mb\012"
 

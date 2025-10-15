@@ -1,51 +1,20 @@
 # bash_profile
 #
-# Bash login, execute once-per-session type of stuff
+# Runs for LOGIN shells only
+# On macOS, terminal opens login shells, so this sources bashrc
+# On Linux, login shells don't automatically source bashrc
 #
 
-# echo "Running main bash_profile"
+echo "Running ~/bash_profile"
 
 ##############################################################################
 
-##########################
-### SYSTEM CONFIGURATION
-### Execute Once Per Login
-##########################
+# Source bashrc for interactive login shells
+if [[ -f "$HOME/.bashrc" ]]; then
+	source "$HOME/.bashrc"
+fi
 
-PLAT_NIX=true
-PLAT_LINUX=false
-PLAT_MAC=false
-
-case "$OSTYPE" in
-  darwin*)  PLAT_MAC=true ;;
-  solaris*) PLAT_NIX=true ;;
-  linux*)   PLAT_NIX=true & PLAT_LINUX=true ;;
-  bsd*)     PLAT_NIX=true & PLAT_LINUX=true ;;
-  *)        echo "unknown: $OSTYPE" ;;
-esac
-
-export PLAT_NIX
-export PLAT_LINUX
-export PLAT_MAC
-
-export PATH=/opt/bin:/opt/sbin:/usr/local/bin:$PATH:~/Unix/apache-ant/bin:~/Unix/ares-cli/bin
-
-
-### Setup enyo-dev compiling
-ulimit -n 2560
-
-
-#
-# Configure global variables to make loading machine-specific configs easier
-# and more consistent across multiple files
-#
-export PROFILECONFIGDIR="$HOME/.profileconfig"
-export MACHINECONFIGDIR="$PROFILECONFIGDIR/machine-configs/$HOSTNAME"
-source "$PROFILECONFIGDIR/prepare-rc-files.sh"
-# screen -X setenv HOME "$HOME"
-# screen -X setenv HOSTNAME "$HOSTNAME"
-# screen -X setenv PROFILECONFIGDIR "$PROFILECONFIGDIR"
-# screen -X setenv MACHINECONFIGDIR "$MACHINECONFIGDIR"
-
-# Load the machine version of this file
-source_machine_version bash_profile
+# Load machine-specific login configuration
+if declare -f source_machine_version >/dev/null 2>&1; then
+	source_machine_version bash_profile
+fi

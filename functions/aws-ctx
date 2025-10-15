@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# From: https://github.com/aws/aws-cli/issues/6979
+
+function aws-ctx () {
+  export AWS_PROFILE="$(aws configure list-profiles | fzf)"
+  echo "Switched to profile ""$AWS_PROFILE""."
+}

@@ -1,16 +1,27 @@
-
+# zshrc
+#
+# Runs for INTERACTIVE shells only (after zshenv/zprofile)
+# Aliases, functions, prompts, keybindings, completion, history
+#
 # Difference between all of these files:
 # https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout
 
 echo "Running ~/zshrc"
 
+##############################################################################
+
+# Enable variables in the prompt
+setopt prompt_subst
+
 #
-# Set up the zsh HISTFILE to save into the sessions folder with a name related to the shell and window
+# Set up the zsh HISTFILE
+# Screen windows get separate history, everything else shares one file
 #
-if [[ ! -e "$HOME/.zsh_sessions" ]]; then
-	mkdir "$HOME/.zsh_sessions"
+if [[ -n "$WINDOW" ]]; then
+    export HISTFILE="$HOME/.zsh_history.window.$WINDOW"
+else
+    export HISTFILE="$HOME/.zsh_history"
 fi
-export HISTFILE="$HOME/.zsh_sessions/$TERM.window.$WINDOW"
 
 #~ SMALL_PWD=`if [[ \`pwd|wc -c|tr -d " "\` > 25 ]]; then echo "/.../\\W"; else echo "\\w"; fi`;
 #~ SMALL_PWD=`if [[ \`pwd|wc -c\` > 25 ]]; then echo "/.../\\W"; else echo "\\w"; fi`;
@@ -59,74 +70,28 @@ export LS_COLORS
 ### ALIASES and COMMANDS
 ###########################
 
-
-### Working with Unix
-alias l='ls -lh'
-alias ll='l -a'
-if $PLAT_LINUX ; then
-	alias l='ls -lh --color'
-	# alias ll='l -a --color'
-fi
-alias p='ps x'
-alias pp='ps xa'
-alias pm='ps -eo pid,pcpu,pmem,user,comm --sort -%cpu | head -10'
-alias pc='ps -eo pid,pcpu,pmem,user,comm --sort -%cpu | head -10'
-if $PLAT_MAC ; then
-	alias pm='ps amcxo pid,pcpu,pmem,user,command | head -10'
-	alias pc='ps arcxo pid,pcpu,pmem,user,command | head -10'
-fi
-alias ip='ifconfig | grep "inet "'
-alias rmignored='rm */*.ignore'
-
-alias dus='du -Psckx * | sort -nr'
-alias untar='tar -zxvf'
-alias cpan='sudo perl -MCPAN -e shell'
-alias editcron='env EDITOR=nano crontab -e'
-
-### Server Connections
-alias quakers='ssh -l quakers q3.mendelbio.com'
-##### Home Network
-# ssh -A -t root@apt.resourcefork.com \ ssh -A -t rick@192.168.1.5
-ROUTER_ADDRESS='apt.resourcefork.com'
-CMD_SSH_ARC='ssh -A -t admin@192.168.1.9'
-CMD_SSH_MORTY='ssh -A -t root@192.168.1.6'
-CMD_SSH_PILLAR='ssh -A -t blake@192.168.1.2 screen -x -RR -U'
-CMD_SSH_RICK='ssh -A -t rick@192.168.1.5 screen -x -RR -U'
-CMD_SSH_ROUTER="ssh -A -t root@${ROUTER_ADDRESS}"
-CMD_SSH_ROUTER_LOCAL='ssh -A -t root@192.168.1.1'
-alias ssharc="${CMD_SSH_ROUTER} \ ${CMD_SSH_ARC}"
-alias ssharclocal=$CMD_SSH_ARC
-alias sshpillar="${CMD_SSH_ROUTER} \ ${CMD_SSH_PILLAR}"
-alias sshpillarlocal=$CMD_SSH_PILLAR
-alias sshrick="${CMD_SSH_ROUTER} \ ${CMD_SSH_RICK}"
-alias sshricklocal=$CMD_SSH_RICK
-alias sshrouter=$CMD_SSH_ROUTER
-alias sshrouterlocal=$CMD_SSH_ROUTER_LOCAL
-
-### Working with Perl
-alias build='perl Makefile.PL; make'
-alias clean='make realclean'
-alias rebuild='clean; build'
-
-alias apacheerr='tail /var/log/httpd/error_log'
-if $PLAT_MAC ; then
-	alias apacheerr='tail /var/log/apache2/error_log'
+# Load shared aliases
+if [[ -f "$PROFILECONFIGDIR/shell_aliases.sh" ]]; then
+	source "$PROFILECONFIGDIR/shell_aliases.sh"
 fi
 
-### Working with NodeJS
-alias npmreset='rm -rf node_modules package-lock.json'
-alias nvmupgrade='nvm alias default node && nvm install node --reinstall-packages-from=node'
-
-### Directories
-alias ..='cd ..'
-
-
-# Load the machine version of this file
+# Load machine-specific zshrc
 source_machine_version zshrc
 
-# bun completions
-[ -s "/Users/stepblk/.bun/_bun" ] && source "/Users/stepblk/.bun/_bun"
+###########################
+### TOOL INTEGRATIONS
+###########################
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# bun completions
+# BUN - should check if paths exist before adding
+if [[ -s "$HOME/.bun/_bun" ]]; then
+    source "$HOME/.bun/_bun"
+fi
+
+# Local bin environment
+if [[ -f "$HOME/.local/bin/env" ]]; then
+    . "$HOME/.local/bin/env"
+fi
+
+# Kiro terminal integration
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"

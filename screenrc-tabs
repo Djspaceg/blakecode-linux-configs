@@ -1,0 +1,22 @@
+# screenrc-tabs
+
+echo "Running main screenrc-tabs"
+
+##############################################################################
+
+echo "--v--"
+echo "  HOME = $HOME"
+echo "  HOSTNAME = $HOSTNAME"
+echo "  PROFILECONFIGDIR = $PROFILECONFIGDIR"
+echo "  MACHINECONFIGDIR = $MACHINECONFIGDIR"
+echo "--\^--"
+
+# Load the machine version of this file
+# echo "Loading: $MACHINECONFIGDIR/screenrc"
+source "${MACHINECONFIGDIR}/screenrc-tabs"
+
+
+### None of the below works...
+
+# Load the machine version of this file
+# source_machine_version screenrc

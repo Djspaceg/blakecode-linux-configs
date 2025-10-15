@@ -70,12 +70,18 @@ function make-symlink() {
 ### machine-specific config folder
 make-symlink "$SOURCEDIR" "$PROFILECONFIGDIR"
 
-### Bash Profile
+### Bash files
+link-profile-file bash_env
 link-profile-file bash_profile
 link-profile-file bashrc
+
+### Zsh files
 link-profile-file zshenv
 link-profile-file zprofile
 link-profile-file zshrc
+
+### Shared files
+# shell_aliases is in PROFILECONFIGDIR, not symlinked to home
 
 ### screen cfg
 link-profile-file screenrc

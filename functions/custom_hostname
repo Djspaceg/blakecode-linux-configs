@@ -2,13 +2,12 @@
 
 # Use a custom host name, for loading config files etc, if the file exists
 function custom_hostname() {
-  local output
+	local output
 	if [[ -s "$HOME/.bc-hostname" ]]; then
-    # echo "Exists and not empty"
-    output=$(cat $HOME/.bc-hostname)
-  else
-    # echo "Doesn't exist or is empty"
-    output=$(hostname)
-  fi
-  export HOSTNAME=$output
+		output=$(cat "$HOME/.bc-hostname" 2>/dev/null | tr -d '\n\r')
+	fi
+	if [[ -z "$output" ]]; then
+		output=$(hostname 2>/dev/null || echo "unknown")
+	fi
+	export HOSTNAME="$output"
 }

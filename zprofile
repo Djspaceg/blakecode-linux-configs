@@ -1,19 +1,12 @@
-# zshenv
+# zprofile
 #
-# Zsh login, execute once-per-session type of stuff
+# Runs for LOGIN shells only (after zshenv, before zshrc)
+# Login-specific setup that doesn't need to run for every shell
 #
 
 echo "Running ~/zprofile"
 
 ##############################################################################
 
-
-export PATH=/opt/bin:/opt/sbin:/usr/local/bin:$PATH
-
-
-# Re-run the custom_hostname method to ensure $HOSTNAME being set.
-# This seemed necessary on AL2.
-custom_hostname
-
-# Load the machine version of this file
+# Load machine-specific login configuration
 source_machine_version zprofile

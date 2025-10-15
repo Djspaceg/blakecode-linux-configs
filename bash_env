@@ -1,6 +1,6 @@
-# zshenv
+# bash_env
 #
-# Runs for EVERY zsh invocation (interactive, non-interactive, scripts)
+# Bash environment variables (sourced by bashrc for all shells)
 # ONLY environment variables here - no output, no interactive features
 #
 
@@ -28,23 +28,6 @@ export PROFILECONFIGDIR="$HOME/.profileconfig"
 source "$PROFILECONFIGDIR/prepare-rc-files.sh"
 
 # Load machine-specific environment variables
-source_machine_version zshenv
-
-## Tool paths (conditional additions)
-
-# BUN - should check if paths exist before adding
-if [[ -d "$HOME/.bun/bin" ]]; then
-    export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
-fi
-
-# Java - should check if java_home exists
-if command -v /usr/libexec/java_home >/dev/null 2>&1; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v 21 2>/dev/null || /usr/libexec/java_home 2>/dev/null)
-fi
-
-# Added by smithy-mcp
-# Smithy - check before adding to path
-if [[ -d "$HOME/.config/smithy-mcp/mcp-servers" ]]; then
-    export PATH="$HOME/.config/smithy-mcp/mcp-servers:$PATH"
+if declare -f source_machine_version >/dev/null 2>&1; then
+	source_machine_version bash_env
 fi
