@@ -25,7 +25,7 @@ export PLAT_NIX PLAT_LINUX PLAT_MAC
 
 # Configure global variables for machine-specific configs
 export PROFILECONFIGDIR="$HOME/.profileconfig"
-source "$PROFILECONFIGDIR/prepare-rc-files.sh"
+source "$PROFILECONFIGDIR/scripts/prepare-rc-files.zsh"
 
 # Load machine-specific environment variables
 source_machine_version zshenv

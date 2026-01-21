@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 # echo "Preparing RC files"
 
 # Order of operations is important in this file.

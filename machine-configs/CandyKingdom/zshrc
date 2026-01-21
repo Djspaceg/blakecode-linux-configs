@@ -14,16 +14,20 @@ ssh() {
     set-title $HOST;
 }
 
+bindkey '^[[13;2u' accept-line  # SHIFT+ENTER sends 0x0a (newline)
+
 # The original name for the workspace cloud machine
-alias sshcloudorig='ssh dev-dsk-stepblk.us-west-2.amazon.com'
+alias sshcloudorig='ssh dev-dsk-stepblk-2b-29f09a6b.us-west-2.amazon.com'
 # A "convenient" alias to the machine, set by:
 # https://dns-manage-web.corp.proxy.amazon.com/cgi-bin/cname-editor.cgi
-alias sshcloud='ssh stepblk.aka.corp.amazon.com'
+# alias sshcloud='ssh stepblk.aka.corp.amazon.com'
+## Added while in the `zero-gravity` POSIX group.
+alias sshcloud='ssh stepblk-main.aka.corp.amazon.com'
 # Alkai EC2 dev server
 alias sshalkai='ssh -i "~/.ssh/ihop-webserver.pem" -l ec2-user 192.168.255.200'
 
 # Re-establish a secure connection to the intranet
-alias auth='mwinit -s --fido2'
+alias auth='mwinit -s --fido2 -f -k ~/.ssh/id_ecdsa.pub'
 # alias auth='kinit && mwinit --aea -s -o'
 
 ### Aliases
@@ -82,7 +86,7 @@ buildcdk() {
 }
 
 bootstrapcdk() {
-    [ -s "$HOME/.profileconfig/cdk-bootstrap.sh" ] && . "$HOME/.profileconfig/cdk-bootstrap.sh"  # Execute this script
+    [ -s "$HOME/.profileconfig/scripts/cdk-bootstrap.sh" ] && . "$HOME/.profileconfig/scripts/cdk-bootstrap.sh"  # Execute this script
 }
 
 alias getstacks='brazil-build cdk ls'

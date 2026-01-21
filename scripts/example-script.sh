@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# source ./prepare-rc-files.sh
+# source ./scripts/prepare-rc-files.zsh
 
 # function sayhi() {
 # 	echo "hi!"

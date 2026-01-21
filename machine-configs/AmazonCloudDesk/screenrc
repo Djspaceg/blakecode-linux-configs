@@ -7,8 +7,8 @@ echo "Running ${HOSTNAME}/screenrc"
 
 source screenrc-tabs
 
-backtick 1 0 1 $HOME/source/blakecode-linux-configs/justuptime.sh
-backtick 2 0 5 $HOME/source/blakecode-linux-configs/myip.sh
+backtick 1 0 1 $HOME/source/blakecode-linux-configs/scripts/justuptime.sh
+backtick 2 0 5 $HOME/source/blakecode-linux-configs/scripts/myip.sh
 
 screen -t 0
 

@@ -1,3 +1,7 @@
+
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+
 # zshrc
 #
 # Runs for INTERACTIVE shells only (after zshenv/zprofile)
@@ -71,8 +75,8 @@ export LS_COLORS
 ###########################
 
 # Load shared aliases
-if [[ -f "$PROFILECONFIGDIR/shell_aliases.sh" ]]; then
-	source "$PROFILECONFIGDIR/shell_aliases.sh"
+if [[ -f "$PROFILECONFIGDIR/scripts/shell_aliases.sh" ]]; then
+	source "$PROFILECONFIGDIR/scripts/shell_aliases.sh"
 fi
 
 # Load machine-specific zshrc
@@ -95,3 +99,8 @@ fi
 
 # Kiro terminal integration
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

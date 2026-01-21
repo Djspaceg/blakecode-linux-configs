@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # shell_aliases
 #
 # Shared aliases for both bash and zsh
@@ -31,19 +32,18 @@ alias quakers='ssh -l quakers q3.mendelbio.com'
 ##### Home Network
 ROUTER_ADDRESS='apt.resourcefork.com'
 CMD_SSH_ARC='ssh -A -t admin@192.168.1.9'
-CMD_SSH_MORTY='ssh -A -t root@192.168.1.6'
 CMD_SSH_PILLAR='ssh -A -t blake@192.168.1.2 screen -x -RR -U'
 CMD_SSH_RICK='ssh -A -t rick@192.168.1.5 screen -x -RR -U'
-CMD_SSH_ROUTER="ssh -A -t root@${ROUTER_ADDRESS}"
+CMD_SSH_ROUTER="ssh -A -t root@\${ROUTER_ADDRESS}"
 CMD_SSH_ROUTER_LOCAL='ssh -A -t root@192.168.1.1'
-alias ssharc="${CMD_SSH_ROUTER} \\ ${CMD_SSH_ARC}"
-alias ssharclocal=$CMD_SSH_ARC
-alias sshpillar="${CMD_SSH_ROUTER} \\ ${CMD_SSH_PILLAR}"
-alias sshpillarlocal=$CMD_SSH_PILLAR
-alias sshrick="${CMD_SSH_ROUTER} \\ ${CMD_SSH_RICK}"
-alias sshricklocal=$CMD_SSH_RICK
-alias sshrouter=$CMD_SSH_ROUTER
-alias sshrouterlocal=$CMD_SSH_ROUTER_LOCAL
+alias ssharc="\${CMD_SSH_ROUTER} \\\\ \${CMD_SSH_ARC}"
+alias ssharclocal="\${CMD_SSH_ARC}"
+alias sshpillar="\${CMD_SSH_ROUTER} \\\\ \${CMD_SSH_PILLAR}"
+alias sshpillarlocal="\${CMD_SSH_PILLAR}"
+alias sshrick="\${CMD_SSH_ROUTER} \\\\ \${CMD_SSH_RICK}"
+alias sshricklocal="\${CMD_SSH_RICK}"
+alias sshrouter="\${CMD_SSH_ROUTER}"
+alias sshrouterlocal="\${CMD_SSH_ROUTER_LOCAL}"
 
 ### Working with Perl
 alias build='perl Makefile.PL; make'

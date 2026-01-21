@@ -9,32 +9,32 @@ source screenrc-tabs
 
 screen -t 0
 
-chdir $HOME/workplace/alkai/AlkaiUI/src
-screen -t General   1
+screen -t General     1
+stuff "cd $HOME/\012"
 
-chdir $HOME/workplace/transformer/Transformer-Bumblebee/src/Transformer-BumblebeeUI
-screen -t BB-UI     2
+screen -t Workplace   2
+stuff "cd $HOME/workplace\012"
 
-chdir $HOME/workplace/transformer/Transformer-Bumblebee/src/Transformer-BumblebeeCDK
-screen -t BB-CDK    3
+screen -t Workplace2  3
+stuff "cd $HOME/workplace\012"
 
-chdir $HOME/workplace/alkai/AlkaiUI/src/AlkaiUIConfig
-screen -t Config    4
+screen -t Source      4
+stuff "cd $HOME/Source\012"
 
-chdir $HOME/workplace/alkai/AlkaiUI/src/AlkaiUI/lib
-screen -t UI        5
+screen -t Source2     5
+stuff "cd $HOME/Source\012"
 
-chdir $HOME/workplace/alkai/AlkaiUI/src/AlkaiUIApps/apps
-screen -t App       6
+screen -t Tr-App      6
+stuff "cd $HOME/Source/transformer-android\012"
 
-chdir $HOME/Source
-screen -t Source    7
+screen -t Tr-Chat     7
+stuff "cd $HOME/Source/transformer-chatserver\012"
 
-chdir $HOME/.ssh
-screen -t SSH       8
+screen -t SSH         8
+stuff "cd $HOME/.ssh\012"
 
-chdir $HOME/.ssh
-screen -t SSH2      9
+screen -t SSH2        9
+stuff "cd $HOME/.ssh\012"
 
 # chdir $HOME/.ssh
 # screen -t CloudDesk     6 ssh clouddesk

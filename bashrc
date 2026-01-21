@@ -242,8 +242,8 @@ bind '"\033[B":history-search-forward'
 
 
 ### Load shared aliases
-if [[ -f "$PROFILECONFIGDIR/shell_aliases.sh" ]]; then
-	source "$PROFILECONFIGDIR/shell_aliases.sh"
+if [[ -f "$PROFILECONFIGDIR/scripts/shell_aliases.sh" ]]; then
+	source "$PROFILECONFIGDIR/scripts/shell_aliases.sh"
 fi
 
 ### Bash-specific aliases

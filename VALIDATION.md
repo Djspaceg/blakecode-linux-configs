@@ -3,11 +3,13 @@
 ## Shell Execution Best Practices ✓
 
 ### Zsh Configuration
+
 - **zshenv**: Environment variables only, no output, runs for ALL invocations ✓
 - **zprofile**: Login-specific setup, runs for LOGIN shells only ✓
 - **zshrc**: Interactive features only, runs for INTERACTIVE shells ✓
 
 ### Bash Configuration
+
 - **bash_env**: Environment variables only, no output ✓
 - **bash_profile**: Sources bashrc, then loads login-specific config ✓
 - **bashrc**: Interactive features, sources bash_env if needed ✓
@@ -15,12 +17,14 @@
 ## PATH Construction ✓
 
 ### Layered Approach
+
 1. **Global env files** (zshenv/bash_env): Standard system paths
 2. **Machine-specific env files**: Machine-specific paths (toolbox, node, etc.)
 3. **Machine-specific profile files**: Login-specific paths (Homebrew shellenv)
 4. **Tool integrations** (zshenv): Conditional tool paths (bun, java, smithy)
 
 ### PATH Ordering
+
 - All additions use append or prepend strategically
 - No PATH overwrites that would shadow important binaries
 - Machine-specific paths loaded before generic paths
@@ -28,6 +32,7 @@
 ## History Management ✓
 
 ### Unified Approach
+
 - **Shared history**: `~/.zsh_history` and `~/.bash_history`
 - **Screen isolation**: `~/.zsh_history.window.$WINDOW` and `~/.bash_history.window.$WINDOW`
 - Only screen windows get separate history files
@@ -36,20 +41,23 @@
 ## Code Organization ✓
 
 ### No Duplication
-- **shell_aliases.sh**: Shared aliases for both bash and zsh
+
+- **scripts/shell_aliases.sh**: Shared aliases for both bash and zsh
 - Platform-specific aliases use PLAT_* variables
 - Machine-specific aliases stay in machine configs
 
 ### Separation of Concerns
+
 - Environment variables → env files
 - Login setup → profile files
 - Interactive features → rc files
-- Shared code → shell_aliases.sh
+- Shared code → scripts/shell_aliases.sh
 - Machine-specific → machine-configs/$HOSTNAME/
 
 ## GNU Screen Configuration ✓
 
 ### Best Practices
+
 - Uses user's default shell with login flag: `shell -$SHELL`
 - Dynamic shell title based on $SHELL
 - Window numbering starts at 1 (more intuitive)
@@ -60,6 +68,7 @@
 - Zombie windows kept for review
 
 ### Key Bindings
+
 - F1-F9: Select windows 1-9
 - F10: Reload screenrc-tabs
 - F11: Command mode (Ctrl-a)
@@ -70,6 +79,7 @@
 ## Error Handling ✓
 
 ### Defensive Programming
+
 - All function calls check if function exists first
 - All file sources check if file exists first
 - All PATH additions check if directory exists first
@@ -78,10 +88,12 @@
 ## Machine-Specific Configuration ✓
 
 ### Global vs Machine-Specific
+
 - **Global**: Standard Unix/Linux/macOS paths and tools
 - **Machine-specific**: Amazon/AWS tools, custom paths, company-specific configs
 
 ### CandyKingdom Machine
+
 - Toolbox, node@22, Homebrew paths in env files
 - Brazil/AWS tooling aliases in zshrc
 - Amazon-specific SSH aliases

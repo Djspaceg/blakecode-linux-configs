@@ -3,13 +3,42 @@
 echo "Running $HOSTNAME/zshrc"
 
 ##############################################################################
+### Shell Options & Completion
+##############################################################################
 
-### Prompt
-# export PROMPT="
-# %{$fg[white]%}(%D %*) <%?> [%~] $program %{$fg[default]%}
-# %{$fg[cyan]%}%m %#%{$fg[default]%} "
+autoload -Uz compinit && compinit
 
-# export RPROMPT=
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+##############################################################################
+### Prompt Configuration
+##############################################################################
+
+autoload -U colors && colors
+
+# Git info function
+git_prompt_info() {
+    local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+    if [ -n "$branch" ]; then
+        local git_status=$(git status --porcelain 2>/dev/null)
+        local color="%{$fg[white]%}"
+        if [ -n "$git_status" ]; then
+            color="%{$fg[red]%}"
+        fi
+        echo " ${color}(${branch})%{$reset_color%}"
+    fi
+}
+
+# Single-line prompt using $HOSTNAME from custom_hostname function
+setopt PROMPT_SUBST
+export PROMPT='%{$fg[cyan]%}${HOSTNAME}%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}$(git_prompt_info) %{$fg[green]%}$%{$reset_color%} '
+
+export RPROMPT=''
+
+##############################################################################
+### Custom Functions
+##############################################################################
 
 ssh() {
     set-title $*;
@@ -17,36 +46,58 @@ ssh() {
     set-title $HOST;
 }
 
-# Re-establish a secure connection to the intranet
-alias auth='kinit && mwinit -o'
+##############################################################################
+### Aliases - Amazon/Brazil Specific
+##############################################################################
 
-### Aliases
+# Authentication
+alias auth='mwinit -o'
+
+# Editor
 alias e=emacs
-alias bb=brazil-build
 
+# Brazil Build
+alias bb=brazil-build
 alias bba='brazil-build apollo-pkg'
+alias bbs='bb start'
+alias bbr='brc brazil-build'
+alias bbra='bbr apollo-pkg'
+alias bbb='brc --allPackages brazil-build'
+alias bball='brc --allPackages'
+
+# Brazil Runtime
 alias bre='brazil-runtime-exec'
-alias brc='brazil-recursive-cmd'
+
+# Brazil Recursive Commands
+alias brc=brazil-recursive-cmd
+
+# Brazil Workspace
 alias bws='brazil ws'
 alias bwsuse='bws use --gitMode -p'
 alias bwscreate='bws create -n'
-alias brc=brazil-recursive-cmd
-alias bbr='brc brazil-build'
-alias bball='brc --allPackages'
-alias bbb='brc --allPackages brazil-build'
-alias bbra='bbr apollo-pkg'
-
-## My Brazil Aliases
-alias bbs='bb start'
 alias bsync='brazil ws --sync'
 
 # BrazilThirdPartyTool
 # https://builderhub.corp.amazon.com/docs/cloud-desktop/user-guide/setup-post.html#brazilthirdpartytool
-alias third-party-promote='~/.toolbox/bin/brazil-third-party-tool promote'
 alias third-party='~/.toolbox/bin/brazil-third-party-tool'
+alias third-party-promote='~/.toolbox/bin/brazil-third-party-tool promote'
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+##############################################################################
+### Runtime Management - mise
+##############################################################################
+
+eval "$(/home/stepblk/.local/bin/mise activate zsh)"
+source ~/.local/share/mise/completions.zsh
+
+##############################################################################
+### Brazil Completion
+##############################################################################
+
+source /home/stepblk/.brazil_completion/zsh_completion
+
+##############################################################################
+### Machine-Specific Overrides
+##############################################################################
 
 if [ -f ~/.zshrc-dev-dsk-post ]; then
     source ~/.zshrc-dev-dsk-post

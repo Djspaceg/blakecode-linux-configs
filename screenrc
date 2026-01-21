@@ -58,8 +58,8 @@ zombie kr
 ##
 ############################################################
 backtick 0 0 1 pwd
-backtick 1 0 1 $HOME/Source/blakecode-linux-configs/justuptime.sh
-backtick 2 0 5 $HOME/Source/blakecode-linux-configs/myip.sh
+backtick 1 0 1 $HOME/Source/blakecode-linux-configs/scripts/justuptime.sh
+backtick 2 0 5 $HOME/Source/blakecode-linux-configs/scripts/myip.sh
 
 
 ##

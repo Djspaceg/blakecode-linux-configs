@@ -15,9 +15,9 @@ iterm2_print_user_vars() {
   # # shellcheck disable=SC2063
   # iterm2_set_user_var gitBranch "$( (git branch 2> /dev/null) | grep \* | cut -c3- )"
 
-  JUST_UPTIME=$(~/.profileconfig/justuptime.sh)
+  JUST_UPTIME=$(~/.profileconfig/scripts/justuptime.sh)
   iterm2_set_user_var uptime "$JUST_UPTIME"
 
-  IP_ADDRESS=$(~/.profileconfig/myip.sh)
+  IP_ADDRESS=$(~/.profileconfig/scripts/myip.sh)
   iterm2_set_user_var ipAddress "$IP_ADDRESS"
 }
