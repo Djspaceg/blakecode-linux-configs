@@ -1,22 +1,15 @@
-# screenrc-tabs
+# screenrc-tabs (global fallback)
+#
+# This file exists as a fallback if a machine-specific screenrc-tabs doesn't exist.
+# Machine-specific screenrc files should source their own screenrc-tabs:
+#   source "${MACHINECONFIGDIR}/screenrc-tabs"
+#
+# If you're seeing this message, create a screenrc-tabs in your machine config folder.
 
-echo "Running main screenrc-tabs"
+echo "WARNING: Using global screenrc-tabs fallback. Create ${MACHINECONFIGDIR}/screenrc-tabs for machine-specific tabs."
 
-##############################################################################
-
-echo "--v--"
-echo "  HOME = $HOME"
-echo "  HOSTNAME = $HOSTNAME"
-echo "  PROFILECONFIGDIR = $PROFILECONFIGDIR"
-echo "  MACHINECONFIGDIR = $MACHINECONFIGDIR"
-echo "--\^--"
-
-# Load the machine version of this file
-# echo "Loading: $MACHINECONFIGDIR/screenrc"
-source "${MACHINECONFIGDIR}/screenrc-tabs"
-
-
-### None of the below works...
-
-# Load the machine version of this file
-# source_machine_version screenrc
+# Default: just create a single window
+screen -t 0
+chdir $HOME
+screen -t General 1
+select 1

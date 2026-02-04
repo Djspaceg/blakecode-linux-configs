@@ -1,11 +1,12 @@
-# JungleFort.local/screenrc
+# JungleFort/screenrc
 
 echo "Running ${HOSTNAME}/screenrc"
 
 
 ##############################################################################
 
-source screenrc-tabs
+# Source machine-specific tabs configuration
+source "${MACHINECONFIGDIR}/screenrc-tabs"
 
 screen -t 0
 

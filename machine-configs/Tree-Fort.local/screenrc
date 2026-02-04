@@ -2,11 +2,9 @@
 
 echo "Running ${HOSTNAME}/screenrc"
 
-
 ##############################################################################
 
-#~ screen -d -RR -t 'MB'   1 bash --init-file ~/.bash_profile
-#~ screen -d RR -t 'ApacheErr' 3 bash -c 'apacheerr -f'
+# Window Configs
 screen -t 0
 
 chdir $HOME/Source

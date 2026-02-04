@@ -64,8 +64,8 @@ zombie kr
 ##
 ############################################################
 backtick 0 0 1 pwd
-backtick 1 0 1 $HOME/Source/blakecode-linux-configs/scripts/justuptime.sh
-backtick 2 0 5 $HOME/Source/blakecode-linux-configs/scripts/myip.sh
+backtick 1 0 1 $PROFILECONFIGDIR/scripts/justuptime.sh
+backtick 2 0 5 $PROFILECONFIGDIR/scripts/myip.sh
 
 
 ##
@@ -161,5 +161,8 @@ bind ^C screen 1
 # Load the machine version of this file
 # echo "Loading: $MACHINECONFIGDIR/screenrc"
 source "${MACHINECONFIGDIR}/screenrc"
+
+# Fallback: if machine screenrc doesn't define tabs, use global fallback
+# (Machine screenrc should source its own screenrc-tabs)
 
 

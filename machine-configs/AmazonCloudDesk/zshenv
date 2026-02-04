@@ -4,6 +4,8 @@
 
 ##############################################################################
 
+export SHELL=/bin/zsh
+
 export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
 
 export AUTO_TITLE_SCREENS="NO"
@@ -15,5 +17,8 @@ export PATH="/apollo/env/NodeJS/bin:$PATH"
 
 export MAVEN_HOME=/opt/apache-maven-3.3.3
 export PATH=$MAVEN_HOME/bin:$PATH
+
+# if you wish to use IMDS set AWS_EC2_METADATA_DISABLED=false
+export AWS_EC2_METADATA_DISABLED=true
 
 source $HOME/Source/sl16-tree/docker_home/streamline16/build/envsetup.sh

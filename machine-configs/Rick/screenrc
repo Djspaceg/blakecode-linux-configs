@@ -1,17 +1,16 @@
-# Pillar-of-Autumn.local/screenrc
+# Rick/screenrc
 
-# echo "Running $HOSTNAME/screenrc"
+echo "Running ${HOSTNAME}/screenrc"
 
 ##############################################################################
 
-##
-## This caption will always appear at the bottom of the window.
-## To fiddle with it, read the man page for screen.
-##
-######################################################
-# Customized colors
+# Machine-specific hardstatus/caption (overrides global)
 caption string '%{= bw} %1` %= %l    %{-b W}%2`%{-}    %D %M %d %C%a '
 hardstatus string '%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{+b bY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{y}%+Lw%?%?%=%{-} ][ %{Y}%Y-%m-%d %{W}%c%{= g}  ]'
+
+##
+## Window Configs
+##
 
 
 screen -t 0
