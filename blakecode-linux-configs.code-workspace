@@ -2,6 +2,14 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"name": "AWS",
+			"path": "../../.aws"
+		},
+		{
+			"name": "SSH",
+			"path": "../../.ssh"
 		}
 	],
 	"settings": {}

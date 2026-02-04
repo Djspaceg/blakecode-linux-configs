@@ -4,6 +4,12 @@ echo "Running main screenrc"
 
 ##############################################################################
 
+# Set HOSTNAME from .bc-hostname file or fallback to hostname command
+# Screen can't run zsh functions, so we need to set this directly
+setenv HOSTNAME `test -f $HOME/.bc-hostname && cat $HOME/.bc-hostname || hostname`
+setenv PROFILECONFIGDIR $HOME/.profileconfig
+setenv MACHINECONFIGDIR $PROFILECONFIGDIR/machine-configs/$HOSTNAME
+
 echo "--v--"
 echo "  HOME = $HOME"
 echo "  HOSTNAME = $HOSTNAME"

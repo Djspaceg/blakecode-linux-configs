@@ -12,3 +12,8 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export PATH=$HOME/.toolbox/bin:$PATH
 export PATH="/apollo/env/AmazonAwsCli/bin/:$PATH"
 export PATH="/apollo/env/NodeJS/bin:$PATH"
+
+export MAVEN_HOME=/opt/apache-maven-3.3.3
+export PATH=$MAVEN_HOME/bin:$PATH
+
+source $HOME/Source/sl16-tree/docker_home/streamline16/build/envsetup.sh

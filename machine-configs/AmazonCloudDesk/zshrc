@@ -86,14 +86,14 @@ alias third-party-promote='~/.toolbox/bin/brazil-third-party-tool promote'
 ### Runtime Management - mise
 ##############################################################################
 
-eval "$(/home/stepblk/.local/bin/mise activate zsh)"
-source ~/.local/share/mise/completions.zsh
+# eval "$(/home/stepblk/.local/bin/mise activate zsh)"
+# source ~/.local/share/mise/completions.zsh
 
 ##############################################################################
 ### Brazil Completion
 ##############################################################################
 
-source /home/stepblk/.brazil_completion/zsh_completion
+# source /home/stepblk/.brazil_completion/zsh_completion
 
 ##############################################################################
 ### Machine-Specific Overrides

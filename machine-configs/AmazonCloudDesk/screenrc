@@ -7,28 +7,25 @@ echo "Running ${HOSTNAME}/screenrc"
 
 source screenrc-tabs
 
-backtick 1 0 1 $HOME/source/blakecode-linux-configs/scripts/justuptime.sh
-backtick 2 0 5 $HOME/source/blakecode-linux-configs/scripts/myip.sh
-
 screen -t 0
 
-chdir $HOME/workplace
+chdir $HOME/
 screen -t General  1
 
-chdir $HOME/workplace/halo/halo-lr-app/src/HaloLRApp
-screen -t App  2
+chdir $HOME/Source/sl16-tree/docker_home/streamline16
+screen -t SL16  2
 
-chdir $HOME/workplace/halo/halo-lr-app/src/HaloLRApp
-screen -t AppServe  3
+chdir $HOME/Source/sl16-tree/docker_home/streamline16
+screen -t SL16-2  3
 
-chdir $HOME/workplace/halo/halo-lr-app/src/HaloLRApp
-screen -t AppStory  4
+chdir $HOME/Source
+screen -t Source  4
 
-chdir $HOME/workplace/halo/halo-lr-app/src
-screen -t Halo  5
+# chdir $HOME/Source
+# screen -t General  5
 
-chdir $HOME/source
-screen -t Source  6
+# chdir $HOME/Source
+# screen -t Source  6
 
 # chdir $HOME/.ssh
 # screen -t SSH  7

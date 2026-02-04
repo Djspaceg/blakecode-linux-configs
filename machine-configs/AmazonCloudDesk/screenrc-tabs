@@ -1,8 +1,36 @@
 ##
-## This caption $PBGill al$PBGays appear at the $PFGottom of the $PBGindo$PBG.
-## To fiddle $PBGith it, read the man page for screen.
+## This caption will always appear at the bottom of the window.
+## To fiddle with it, read the man page for screen.
 ##
 ######################################################
+
+# Example:
+# hardstatus string "%{= KW} %H [%`] %{= Kw}|%{-} %-Lw%{= bW}%n%f %t%{-}%+Lw %=%C%a %Y-%M-%d"
+# 
+# http://www.gnu.org/software/screen/manual/html_node/String-Escapes.html 
+# 
+# %{= wK} : set colors to bright white (W) on bright black (K) and keep current text styles (=) 
+# %H      : hostname 
+# [       : opening bracket character 
+# %`      : print output of 'backtick' command (defined elsewhere in .screenrc) 
+# ]       : closing bracket character 
+# %{= wW} : set colors to white (w) on bright black (K) and keep current text styles (=) 
+# |       : bar character 
+# ${-}    : restore colors to previous colors / undo last color change 
+# %-Lw    : list windows before current window (L [optional] = "include flags") 
+# %{= bW} : set colors to bright white (W) on blue (b) and keep current text styles (=) 
+# %f      : window flags 
+# %t      : window title 
+# %{-}    : restore colors to previous colors / undo last color change 
+# %+Lw    : list windows after current window (L [optional] = "include flags") 
+# %=      : expand to fill all space (used here to make remaining content flush right) 
+# %C      : current time (12-hr; 24-hr is %c) 
+# %a      : am/pm (lowercase; uppercase is %A) 
+# %Y      : current year 
+# -       : hyphen character 
+# %m      : current month (0-padded; %M for "Jan" etc.) 
+# -       : hyphen character 
+# %d      : current date (0-padded)
 
 GT_RESET=$(   tput sgr0)  # Reset all attributes
 GT_BRIGHT=$(  tput bold)  # Set “bright” attribute
@@ -40,8 +68,16 @@ PFG=g
 PBG=G
 
 # Customized colors
-caption string '%{s kg} %1` %= %l    %{W} %2` %{-}    %D %M %d %C%a '
+# See: https://www.gnu.org/software/screen/manual/html_node/Caption.html#Caption
+# See: https://www.gnu.org/software/screen/manual/html_node/String-Escapes.html
+# See: https://askubuntu.com/questions/25112/how-to-disable-window-caption-bar-in-gnu-screen
+# caption splitonly '%{s YK} %1` %= %l    %{W} %2` %{-}    %D %M %d %C%a '
+caption splitonly '%{s YK} '
 # screen -X hardstatus string "%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{+b bY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{y}%+Lw%?%?%=%{-} ][ %{Y}%Y-%m-%d %{W}%c%{= g}  ]"
 
+# hardstatus string "%{kd}%{.y}[ %H ]%{- .d}[%=%{= .y} %-Lw%{-}%{+b KY} (%{-b .W}%n%f %t%?
+# (%u)%?%{+b .Y}) %{-}%{-}%{-}%{= .y}%+Lw%{-}%=][%{= .Y} %Y-%m-%d %{= .W}%c  %{-}%{-}]"
 
-hardstatus string "%{kd}[%{.g} %H %{-}][%=%{= .g} %-Lw%{-}%{+b kg} (%{-b .W}%n%f %t%? (%u)%?%{+b .G}) %{-}%{-}%{-}%{= .g}%+Lw%{-}%=][%{= .G} %Y-%m-%d %{= .W}%c  %{-}%{-}]"
+# Orange (default bg color) line with black text, gray tab and white text on the active tab. Used
+# with iTerm2 status bar
+hardstatus string "%{= Dd} %?%-Lw%?%{-}%{gK} (%{+b W}%n %t%?(%u)%?%{-b}%{+ g}) %{-}%{-}%{-}%{-}%{= Dd}%+Lw "

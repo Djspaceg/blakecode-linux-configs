@@ -30,6 +30,9 @@ alias sshalkai='ssh -i "~/.ssh/ihop-webserver.pem" -l ec2-user 192.168.255.200'
 alias auth='mwinit -s --fido2 -f -k ~/.ssh/id_ecdsa.pub'
 # alias auth='kinit && mwinit --aea -s -o'
 
+# Set up federation to an AWS account by name or number
+alias federate='source ~/.ssh/aws-federate.sh'
+
 ### Aliases
 alias e=emacs
 alias bb=brazil-build
