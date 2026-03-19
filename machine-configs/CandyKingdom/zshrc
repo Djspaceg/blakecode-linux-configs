@@ -30,9 +30,6 @@ alias sshalkai='ssh -i "~/.ssh/ihop-webserver.pem" -l ec2-user 192.168.255.200'
 alias auth='mwinit -s --fido2 -f -k ~/.ssh/id_ecdsa.pub'
 # alias auth='kinit && mwinit --aea -s -o'
 
-# Set up federation to an AWS account by name or number
-alias federate='source ~/.ssh/aws-federate.sh'
-
 ### Aliases
 alias e=emacs
 alias bb=brazil-build
@@ -61,6 +58,9 @@ alias cdconsole='cd ~/workplace/locke/locke-console/src/AWSLockeConsole'
 alias cdcdk='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleCDK'
 alias cdtests='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleTests'
 alias cdhalo='cd ~/workplace/halo/halo-lr-app/src/HaloLRApp'
+
+# Set up federation to an AWS account by name or number
+source ~/.aws/aws-federate.sh
 
 buildcdk() {
     echo " -------------------------------------------------------------------";
