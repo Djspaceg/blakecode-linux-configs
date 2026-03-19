@@ -5,6 +5,9 @@ echo "Running ${HOSTNAME}/screenrc"
 
 ##############################################################################
 
+# Enable 256 color support
+term screen-256color
+
 # Source machine-specific tabs configuration
 source "${MACHINECONFIGDIR}/screenrc-tabs"
 
