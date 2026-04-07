@@ -1,0 +1,13 @@
+# Rick/bash_profile
+#
+# Login shells only. Runs once per session.
+#
+
+export HOSTNAME="Rick"
+
+source "$HOME/.profileconfig/shell/core/env.bash"
+
+# Source bashrc for interactive login shells
+if [[ -f "$HOME/.bashrc" ]]; then
+    source "$HOME/.bashrc"
+fi

@@ -1,102 +1,114 @@
-# Configuration Architecture
+# Configuration Architecture (v2)
 
-This repository manages shell and terminal configurations across multiple machines using a layered inheritance model.
+This repository manages shell and terminal configurations across multiple machines
+using an inverted control model: machine configs are the entry points, shared code
+is a library they pull from.
 
-## Core Principle: Global + Machine-Specific
+## Core Principle: Machine Controls, Core Provides
 
-Every configuration file follows this pattern:
+Each machine has its own zsh startup files (zshenv, zprofile, zshrc) and a screenrc.
+These are the symlink targets. They source shared core and modules as needed.
+The machine file decides what to load and in what order.
 
-1. **Global version** (in repo root) - shared defaults for all machines
-2. **Machine-specific version** (in `machine-configs/$HOSTNAME/`) - augments or overrides global
-
-The global file is responsible for sourcing the machine-specific version when it exists.
-
-## File Hierarchy
-
-```
-~/.profileconfig/              (symlink to this repo)
-├── [config-file]              Global version, symlinked to ~/.[config-file]
-├── scripts/
-│   ├── prepare-rc-files.zsh   Bootstraps functions and sets HOSTNAME (zsh)
-│   ├── prepare-rc-files.sh    Bootstraps variables for bash (no autoload)
-│   └── shell_aliases.sh       Shared aliases for bash/zsh
-├── functions/                 Autoloaded shell functions (zsh only)
-└── machine-configs/
-    └── $HOSTNAME/
-        └── [config-file]      Machine-specific overrides
-```
-
-## Execution Flow
-
-### Shell Startup (zsh)
+## Directory Structure
 
 ```
-1. ~/.zshenv (symlink → zshenv)
-   └── sources scripts/prepare-rc-files.zsh
-       ├── Sets PROFILECONFIGDIR, HOSTNAME, MACHINECONFIGDIR
-       ├── Adds functions/ to FPATH
-       └── Autoloads: custom_hostname, source_machine_version, etc.
-   └── calls source_machine_version zshenv
-       └── sources machine-configs/$HOSTNAME/zshenv (if exists)
-
-2. ~/.zprofile (symlink → zprofile)
-   └── calls source_machine_version zprofile
-
-3. ~/.zshrc (symlink → zshrc)
-   └── sources scripts/shell_aliases.sh
-   └── calls source_machine_version zshrc
+~/.profileconfig/                        (symlink to this repo)
+├── install-v2.sh                        Setup script
+├── ARCHITECTURE.md                      Full documentation
+│
+├── shell/
+│   ├── core/                            Shared config (sourced BY machine files)
+│   │   ├── env.zsh                      Platform detection, HOSTNAME derivation
+│   │   ├── login.zsh                    Shared login shell setup
+│   │   ├── interactive.zsh              Prompt, history, colors, terminal integrations
+│   │   ├── aliases.zsh                  Generic Unix aliases
+│   │   └── completions.zsh             compinit, Docker, bun completions
+│   ├── modules/                         Opt-in feature sets
+│   │   ├── brazil.zsh                   Amazon Brazil build aliases + functions
+│   │   ├── aws-federate.zsh            Lazy-loaded AWS federate()
+│   │   ├── iterm.zsh                    iTerm2 user variables
+│   │   ├── homebrew-apple-silicon.zsh  /opt/homebrew paths
+│   │   ├── homebrew-intel.zsh          /usr/local paths
+│   │   └── docker-aliases.zsh          Docker/compose aliases
+│   └── machines/                        One directory per machine
+│       ├── CandyKingdom/{zshenv,zprofile,zshrc}
+│       ├── AmazonCloudDesk/{zshenv,zprofile,zshrc}
+│       └── JungleFort/{zshenv,zprofile,zshrc}
+│
+├── screen/                              Pure Screen parser syntax ONLY
+│   ├── core.screenrc                    Settings, keybindings, F-keys
+│   ├── colors/                          Color themes
+│   │   ├── green.screenrc, blue.screenrc, orange.screenrc
+│   │   ├── magenta.screenrc, yellow.screenrc
+│   └── machines/                        Window layouts (→ ~/.screenrc)
+│       ├── CandyKingdom.screenrc
+│       ├── AmazonCloudDesk.screenrc
+│       └── JungleFort.screenrc
+│
+├── scripts/                             Standalone executables
+└── legacy/                              Archived bash-era configs
 ```
 
-### Screen Startup
+## Symlinks (created by install-v2.sh)
 
 ```
-1. screen command runs
-2. ~/.screenrc (symlink → screenrc)
-   ├── Sets HOSTNAME, PROFILECONFIGDIR, MACHINECONFIGDIR (screen can't use zsh functions)
-   ├── Defines hardstatus, keybindings, colors
-   └── sources machine-configs/$HOSTNAME/screenrc
-       └── sources screenrc-tabs (machine-specific)
-           └── Defines window tabs/layout
+~/.profileconfig  → this repo
+~/.zshenv         → shell/machines/$HOSTNAME/zshenv
+~/.zprofile       → shell/machines/$HOSTNAME/zprofile
+~/.zshrc          → shell/machines/$HOSTNAME/zshrc
+~/.screenrc       → screen/machines/$HOSTNAME.screenrc
 ```
 
-### Screen Spawns New Shell
+## Shell Startup Flow
 
 ```
-1. Screen creates new window
-2. Shell startup sequence repeats (zshenv → zprofile → zshrc)
-3. WINDOW environment variable is set by screen
-4. History file may be per-window based on $WINDOW
+1. ~/.zshenv (→ machine zshenv)
+   └── source core/env.zsh (HOSTNAME derived from file path, platform detection)
+   └── Machine env vars, PATH
+
+2. ~/.zprofile (→ machine zprofile)
+   └── source core/login.zsh
+   └── Homebrew module, machine login setup
+
+3. ~/.zshrc (→ machine zshrc)
+   └── source core/interactive.zsh (guard, terminal integrations, prompt, history)
+   └── source core/aliases.zsh
+   └── source modules as needed (brazil, aws-federate, iterm, etc.)
+   └── Machine aliases and functions
+   └── source core/completions.zsh (always last)
+```
+
+## Screen Startup Flow
+
+```
+~/.screenrc (→ machine screenrc)
+└── source screen/core.screenrc (settings, keybindings)
+└── source screen/colors/[theme].screenrc (status bar colors)
+└── Window definitions
 ```
 
 ## Key Variables
 
 | Variable | Set By | Purpose |
 |----------|--------|---------|
-| `HOSTNAME` | custom_hostname function | Machine identifier from ~/.bc-hostname |
-| `PROFILECONFIGDIR` | prepare-rc-files.zsh | Path to this repo (~/.profileconfig) |
-| `MACHINECONFIGDIR` | prepare-rc-files.zsh | Path to machine-configs/$HOSTNAME |
-| `WINDOW` | screen | Current screen window number |
+| HOSTNAME | core/env.zsh (from file path) | Machine identifier |
+| PROFILECONFIGDIR | core/env.zsh | Path to this repo |
+| PLAT_MAC / PLAT_LINUX | core/env.zsh | Platform flags |
+| WINDOW | screen | Current screen window number |
 
-## Adding Machine-Specific Config
+## Design Rules
 
-1. Create `~/.bc-hostname` with your machine name
-2. Create folder: `machine-configs/[hostname]/`
-3. Add only the files you need to customize
-4. Machine files augment globals - don't duplicate shared config
+- Shell files in `shell/`. Screen files in `screen/`. Never mix parsers.
+- Screen files: ONLY Screen commands. No shell syntax, no tput, no $().
+- Modules are opt-in. Machine files explicitly source what they need.
+- completions.zsh always loads last.
+- Terminal integrations load early in interactive.zsh to prevent re-sourcing.
+- No `eval "$(brew shellenv)"` or slow subshells. Hardcode paths in modules.
 
-## Common Issues
+## Adding a New Machine
 
-### Colors not working in screen
-
-- Add `term screen-256color` to machine screenrc
-- Ensure terminal supports 256 colors before starting screen
-
-### Functions not available
-
-- Check that prepare-rc-files.zsh is sourced early in zshenv
-- Verify FPATH includes the functions directory
-
-### Machine config not loading
-
-- Verify ~/.bc-hostname exists and matches folder name exactly
-- Check HOSTNAME variable: `echo $HOSTNAME`
+1. `echo "NewMachine" > ~/.bc-hostname`
+2. `bash ~/.profileconfig/install-v2.sh` (creates skeleton + symlinks)
+3. Edit files in `shell/machines/NewMachine/`
+4. Create `screen/machines/NewMachine.screenrc`, pick a color theme

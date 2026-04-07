@@ -1,0 +1,75 @@
+# AmazonCloudDesk/zshrc
+#
+# Interactive shells only. Prompt, aliases, functions, integrations.
+#
+
+###########################
+### SHARED CORE
+###########################
+
+source "$HOME/.profileconfig/shell/core/interactive.zsh"
+source "$HOME/.profileconfig/shell/core/aliases.zsh"
+
+###########################
+### MODULES
+###########################
+
+source "$HOME/.profileconfig/shell/modules/brazil.zsh"
+
+###########################
+### PROMPT OVERRIDE
+###########################
+
+# Git-aware prompt for this dev machine
+autoload -U colors && colors
+
+git_prompt_info() {
+    local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+    if [[ -n "$branch" ]]; then
+        local git_status=$(git status --porcelain 2>/dev/null)
+        local color="%{$fg[white]%}"
+        if [[ -n "$git_status" ]]; then
+            color="%{$fg[red]%}"
+        fi
+        echo " ${color}(${branch})%{$reset_color%}"
+    fi
+}
+
+setopt PROMPT_SUBST
+export PROMPT='%{$fg[cyan]%}${HOSTNAME}%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}$(git_prompt_info) %{$fg[green]%}$%{$reset_color%} '
+export RPROMPT=''
+
+###########################
+### MACHINE FUNCTIONS
+###########################
+
+ssh() {
+    set-title "$*"
+    /usr/bin/ssh -2 "$@"
+    set-title "$HOST"
+}
+
+###########################
+### MACHINE ALIASES
+###########################
+
+# Authentication
+alias auth='mwinit -o'
+
+# Editor
+alias e=emacs
+
+# BrazilThirdPartyTool
+alias third-party='~/.toolbox/bin/brazil-third-party-tool'
+alias third-party-promote='~/.toolbox/bin/brazil-third-party-tool promote'
+
+###########################
+### COMPLETIONS (load last)
+###########################
+
+source "$HOME/.profileconfig/shell/core/completions.zsh"
+
+# Machine-specific post-config
+if [[ -f ~/.zshrc-dev-dsk-post ]]; then
+    source ~/.zshrc-dev-dsk-post
+fi

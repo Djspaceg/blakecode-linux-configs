@@ -1,0 +1,8 @@
+# AmazonCloudDesk/zprofile
+#
+# Login shells only. One-time-per-session setup.
+#
+
+source "$HOME/.profileconfig/shell/core/login.zsh"
+
+# No additional login setup needed for this machine.

@@ -1,0 +1,11 @@
+# screen/colors/green.screenrc
+#
+# Dark theme with green bar, yellow window list, magenta/yellow active tab.
+# Pure Screen %{...} color escapes only.
+#
+# Predominant: green background bar, yellow text, magenta highlight on active tab.
+#
+
+caption splitonly '%{s YK} '
+hardstatus alwayslastline
+hardstatus string '%{= kg}[ %{y}%H%{-} ][%= %{y}%?%-Lw%?%{-}%{+b mY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{y}%+Lw%?%?%=%{-} ][ %{M}%Y-%m-%d %{W}%c%{= g}  ]'

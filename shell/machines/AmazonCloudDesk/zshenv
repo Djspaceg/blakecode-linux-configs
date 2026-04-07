@@ -1,0 +1,25 @@
+# AmazonCloudDesk/zshenv
+#
+# Runs for EVERY zsh invocation. Environment variables only, no output.
+#
+
+source "$HOME/.profileconfig/shell/core/env.zsh"
+
+###########################
+### MACHINE ENV VARS
+###########################
+
+export SHELL=/bin/zsh
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+export AUTO_TITLE_SCREENS="NO"
+
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
+export PATH="$HOME/.toolbox/bin:$PATH"
+export PATH="/apollo/env/AmazonAwsCli/bin/:$PATH"
+export PATH="/apollo/env/NodeJS/bin:$PATH"
+
+export MAVEN_HOME=/opt/apache-maven-3.3.3
+export PATH="$MAVEN_HOME/bin:$PATH"
+
+# Disable IMDS unless explicitly needed
+export AWS_EC2_METADATA_DISABLED=true

@@ -1,0 +1,40 @@
+# screen/machines/JungleFort.screenrc
+#
+# JungleFort screen config: core settings + yellow theme + window layout.
+# ~/.screenrc symlinks here.
+#
+
+source $HOME/.profileconfig/screen/core.screenrc
+source $HOME/.profileconfig/screen/colors/yellow.screenrc
+
+###########################
+### WINDOW LAYOUT
+###########################
+
+screen -t 0
+
+chdir $HOME/workplace
+screen -t General  1
+
+chdir $HOME/workplace/halo/halo-lr-app/src/HaloLRApp
+screen -t App  2
+
+chdir $HOME/workplace/halo/halo-lr-app/src/HaloLRApp
+screen -t AppServe  3
+
+chdir $HOME/workplace/halo/halo-lr-app/src/HaloLRApp
+screen -t AppStory  4
+
+chdir $HOME/workplace/halo/halo-lr-app/src
+screen -t Halo  5
+
+chdir $HOME/Source
+screen -t Source  6
+
+chdir $HOME/.ssh
+screen -t SSH  7
+
+chdir $HOME/.ssh
+screen -t SSH2  8
+
+select 1

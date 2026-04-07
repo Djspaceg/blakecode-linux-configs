@@ -1,0 +1,39 @@
+# CandyKingdom/zshenv
+#
+# Runs for EVERY zsh invocation. Environment variables only, no output.
+#
+
+source "$HOME/.profileconfig/shell/core/env.zsh"
+
+###########################
+### MACHINE ENV VARS
+###########################
+
+export PATH="$HOME/.toolbox/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+
+# Compiler flags for node@22 (keg-only in Homebrew)
+export LDFLAGS="-L/opt/homebrew/opt/node@22/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/node@22/include"
+
+# Java
+if command -v /usr/libexec/java_home >/dev/null 2>&1; then
+    export JAVA_HOME=$(/usr/libexec/java_home -v 21 2>/dev/null || /usr/libexec/java_home 2>/dev/null)
+fi
+
+# libffi for Python/Ruby builds
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+
+# Bun
+if [[ -d "$HOME/.bun/bin" ]]; then
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
+# Smithy MCP
+if [[ -d "$HOME/.config/smithy-mcp/mcp-servers" ]]; then
+    export PATH="$HOME/.config/smithy-mcp/mcp-servers:$PATH"
+fi
+
+# Local bin
+export PATH="$HOME/.local/bin:$PATH"

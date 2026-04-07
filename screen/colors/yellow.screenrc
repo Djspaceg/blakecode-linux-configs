@@ -1,0 +1,9 @@
+# screen/colors/yellow.screenrc
+#
+# Yellow/dark accent theme — high contrast for headless servers.
+# Pure Screen %{...} color escapes only.
+#
+
+caption splitonly '%{s YK} '
+hardstatus alwayslastline
+hardstatus string "%{kd}%{.y}[ %H ]%{- .d}[%=%{= .y} %-Lw%{-}%{+b KY} (%{-b .W}%n%f %t%? (%u)%?%{+b .Y}) %{-}%{-}%{-}%{= .y}%+Lw%{-}%=][%{= .Y} %Y-%m-%d %{= .W}%c  %{-}%{-}]"

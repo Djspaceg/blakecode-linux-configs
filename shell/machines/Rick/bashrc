@@ -1,0 +1,23 @@
+# Rick/bashrc
+#
+# Interactive shells only. Prompt, aliases, functions.
+#
+
+###########################
+### SHARED CORE
+###########################
+
+source "$HOME/.profileconfig/shell/core/interactive.bash"
+source "$HOME/.profileconfig/shell/core/aliases.zsh"
+
+###########################
+### MODULES
+###########################
+
+source "$HOME/.profileconfig/shell/modules/docker-aliases.zsh"
+
+###########################
+### MACHINE ALIASES
+###########################
+
+alias webroot='cd /var/www/html'

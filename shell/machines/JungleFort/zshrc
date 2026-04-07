@@ -1,0 +1,55 @@
+# JungleFort/zshrc
+#
+# Interactive shells only. Prompt, aliases, functions, integrations.
+#
+
+###########################
+### SHARED CORE
+###########################
+
+source "$HOME/.profileconfig/shell/core/interactive.zsh"
+source "$HOME/.profileconfig/shell/core/aliases.zsh"
+
+###########################
+### MODULES
+###########################
+
+source "$HOME/.profileconfig/shell/modules/brazil.zsh"
+source "$HOME/.profileconfig/shell/modules/iterm.zsh"
+
+###########################
+### MACHINE FUNCTIONS
+###########################
+
+ssh() {
+    set-title "$*"
+    /usr/bin/ssh -2 "$@"
+    set-title "$HOST"
+}
+
+###########################
+### MACHINE ALIASES
+###########################
+
+# Cloud dev machine
+alias sshcloud='ssh stepblk.aka.corp.amazon.com'
+
+# Authentication
+alias auth='kinit && mwinit -s -o'
+
+# Editor
+alias e=emacs
+
+# Project directories
+alias cdlocke='cd ~/workplace/locke/locke-console/src'
+alias cdlily='cd ~/workplace/locke/lily-console/src'
+alias cdconsole='cd ~/workplace/locke/locke-console/src/AWSLockeConsole'
+alias cdcdk='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleCDK'
+alias cdtests='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleTests'
+alias cdhalo='cd ~/workplace/halo/halo-lr-app/src/HaloLRApp'
+
+###########################
+### COMPLETIONS (load last)
+###########################
+
+source "$HOME/.profileconfig/shell/core/completions.zsh"

@@ -1,0 +1,31 @@
+# screen/machines/AmazonCloudDesk.screenrc
+#
+# AmazonCloudDesk screen config: core settings + blue theme + window layout.
+# ~/.screenrc symlinks here.
+#
+
+source $HOME/.profileconfig/screen/core.screenrc
+source $HOME/.profileconfig/screen/colors/blue.screenrc
+
+# Enable 256 color support (needed on this machine)
+term screen-256color
+
+###########################
+### WINDOW LAYOUT
+###########################
+
+screen -t 0
+
+chdir $HOME/
+screen -t General  1
+
+chdir $HOME/Source/sl16-tree/docker_home/streamline16
+screen -t SL16  2
+
+chdir $HOME/Source/sl16-tree/docker_home/streamline16
+screen -t SL16-2  3
+
+chdir $HOME/Source
+screen -t Source  4
+
+select 1

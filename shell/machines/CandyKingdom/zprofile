@@ -1,0 +1,18 @@
+# CandyKingdom/zprofile
+#
+# Login shells only. One-time-per-session setup.
+#
+
+source "$HOME/.profileconfig/shell/core/login.zsh"
+
+###########################
+### HOMEBREW (Apple Silicon)
+###########################
+
+source "$HOME/.profileconfig/shell/modules/homebrew-apple-silicon.zsh"
+
+# Standard macOS paths
+export PATH="$PATH:/usr/local/bin"
+
+# Ruby OpenSSL linkage (hardcoded to avoid slow `brew --prefix` call)
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/opt/homebrew/opt/openssl@1.1"

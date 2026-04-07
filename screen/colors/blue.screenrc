@@ -1,0 +1,9 @@
+# screen/colors/blue.screenrc
+#
+# Blue accent theme — use for remote dev machines.
+# Pure Screen %{...} color escapes only.
+#
+
+caption splitonly '%{s YK} '
+hardstatus alwayslastline
+hardstatus string '%{= kb}[ %{W}%H%{-} ][%= %{W}%?%-Lw%?%{-}%{+b bY} (%{-b W}%n %t%?(%u)%?%{+b .Y}) %{-}%{-}%{-}%{W}%+Lw%?%?%=%{-} ][ %{M}%Y-%m-%d %{W}%c%{= b}  ]'

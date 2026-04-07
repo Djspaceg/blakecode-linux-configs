@@ -1,0 +1,9 @@
+# screen/colors/magenta.screenrc
+#
+# Magenta accent theme — use for secondary/personal machines.
+# Pure Screen %{...} color escapes only.
+#
+
+caption splitonly '%{s YK} '
+hardstatus alwayslastline
+hardstatus string '%{= km}[ %{W}%H%{-} ][%= %{W}%?%-Lw%?%{-}%{+b mW} (%{-b W}%n %t%?(%u)%?%{+b .m}) %{-}%{-}%{-}%{W}%+Lw%?%?%=%{-} ][ %{Y}%Y-%m-%d %{W}%c%{= m}  ]'

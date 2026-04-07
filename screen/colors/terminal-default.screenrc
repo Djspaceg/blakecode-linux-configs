@@ -1,0 +1,10 @@
+# screen/colors/terminal-default.screenrc
+#
+# Uses the terminal's default background and foreground colors.
+# Active tab: gray with white text. Designed for iTerm2 status bar.
+# Pure Screen %{...} color escapes only.
+#
+
+caption splitonly '%{s YK} '
+hardstatus alwayslastline
+hardstatus string "%{= Dd} %?%-Lw%?%{-}%{gK} (%{+b W}%n %t%?(%u)%?%{-b}%{+ g}) %{-}%{-}%{-}%{-}%{= Dd}%+Lw "

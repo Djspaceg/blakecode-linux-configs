@@ -1,0 +1,87 @@
+# screen/core.screenrc
+#
+# Shared Screen settings, keybindings, and F-key mappings.
+# Sourced by each machine's screenrc. Pure Screen syntax only.
+#
+
+###########################
+### SETTINGS
+###########################
+
+crlf off
+startup_message off
+vbell off
+autodetach on
+altscreen on
+defscrollback 10000
+shell -$SHELL
+shelltitle "$ |$SHELL"
+defmonitor off
+activity "Activity in window %n"
+msgminwait 0
+msgwait 3
+sessionname main
+defutf8 on
+nonblock on
+hardcopy_append on
+
+# Keep windows alive after process exits
+zombie kr
+
+###########################
+### BACKTICK COMMANDS
+###########################
+
+backtick 0 0 1 pwd
+backtick 1 0 1 $HOME/.profileconfig/scripts/justuptime.sh
+backtick 2 0 5 $HOME/.profileconfig/scripts/myip.sh
+
+###########################
+### KEYBINDINGS
+###########################
+
+bind ^t screen -t
+bind q kill
+bind c screen 1
+bind ^C screen 1
+bind 0 select 10
+
+# PgUp enters copy mode and scrolls up
+bindkey -k kP eval "copy" "stuff \025"
+# PgDn scrolls down in copy mode
+bindkey -m -k kN stuff \006
+
+###########################
+### F-KEY TERMINAL INFO
+###########################
+
+terminfo * k1=\033OP
+terminfo * k2=\033OQ
+terminfo * k3=\033OR
+terminfo * k4=\033OS
+terminfo * k5=\E[15~
+terminfo * k6=\E[17~
+terminfo * k7=\E[18~
+terminfo * k8=\E[19~
+terminfo * k9=\E[20~
+terminfo * k;=\E[21~
+terminfo * F1=\E[23~
+terminfo * F2=\E[24~
+
+###########################
+### F-KEY WINDOW SWITCHING
+###########################
+
+bindkey -k k1 select 1
+bindkey -k k2 select 2
+bindkey -k k3 select 3
+bindkey -k k4 select 4
+bindkey -k k5 select 5
+bindkey -k k6 select 6
+bindkey -k k7 select 7
+bindkey -k k8 select 8
+bindkey -k k9 select 9
+
+bindkey -k F1 command
+bindkey -k F2 quit
+bindkey -k kI command

@@ -1,0 +1,27 @@
+# JungleFort/zshenv
+#
+# Runs for EVERY zsh invocation. Environment variables only, no output.
+#
+
+source "$HOME/.profileconfig/shell/core/env.zsh"
+
+###########################
+### MACHINE ENV VARS
+###########################
+
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+
+# Compiler flags for libffi
+export LDFLAGS="-L/usr/local/opt/libffi/lib"
+export CPPFLAGS="-I/usr/local/opt/libffi/include"
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+
+# AWS account for CDK deployments
+export AWS_ACCOUNT_ID=356079508319
+export AWS_LOCKE_DEV_STACK=AWSLockeConsole-us-west-2-alpha-LocalDevStack
+export AWS_LOCKE_DEV_STACK_FAC=AWSLockeConsoleFeatureConfig-us-west-2-alpha-LocalDevStack
+
+# TangerineBox local dev
+export USE_WEBPACK_DEV_SERVER_ASSETS=true

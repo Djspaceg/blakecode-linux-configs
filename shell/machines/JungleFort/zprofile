@@ -1,0 +1,17 @@
+# JungleFort/zprofile
+#
+# Login shells only. One-time-per-session setup.
+#
+
+source "$HOME/.profileconfig/shell/core/login.zsh"
+
+###########################
+### HOMEBREW (Intel Mac)
+###########################
+
+source "$HOME/.profileconfig/shell/modules/homebrew-intel.zsh"
+
+export PATH="$HOME/.toolbox/bin:$PATH"
+
+# Ruby OpenSSL linkage (hardcoded to avoid slow `brew --prefix` call)
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"

@@ -1,0 +1,28 @@
+# screen/machines/Rick.screenrc
+#
+# Rick screen config: core settings + green theme + window layout.
+# ~/.screenrc symlinks here.
+#
+
+source $HOME/.profileconfig/screen/core.screenrc
+source $HOME/.profileconfig/screen/colors/green.screenrc
+
+###########################
+### WINDOW LAYOUT
+###########################
+
+screen -t 0
+
+chdir $HOME
+screen -t Working   1 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+chdir $HOME/Source
+screen -t Source1   2 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+chdir $HOME/Source
+screen -t Source2   3 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+chdir $HOME/.ssh
+screen -t SSH       4 bash -c 'HISTFILE=~/.bash_history.${WINDOW} bash'
+
+select 1
