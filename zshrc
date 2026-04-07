@@ -2,6 +2,26 @@
 # Kiro CLI pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
 
+# Guard against double-sourcing (terminal integrations can re-source zshrc)
+if [[ -n "$_ZSHRC_LOADED" ]]; then
+    return 0
+fi
+_ZSHRC_LOADED=1
+
+###########################
+### TERMINAL INTEGRATIONS (load early to prevent re-sourcing zshrc)
+###########################
+
+# iTerm2 shell integration
+if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+fi
+
+# Kiro terminal integration
+if [[ "$TERM_PROGRAM" == "kiro" ]]; then
+    . "$(kiro --locate-shell-integration-path zsh)"
+fi
+
 # zshrc
 #
 # Runs for INTERACTIVE shells only (after zshenv/zprofile)
@@ -97,10 +117,14 @@ if [[ -f "$HOME/.local/bin/env" ]]; then
     . "$HOME/.local/bin/env"
 fi
 
-# Kiro terminal integration
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+# Kiro terminal integration is now in the global zshrc (loaded early)
 export PATH="$HOME/.local/bin:$PATH"
 
 
 # Kiro CLI post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
+# Docker Desktop CLI completions
+fpath=(/Users/stepblk/.docker/completions $fpath)
+autoload -Uz compinit
+compinit -C  # -C skips security check and uses cached dump for faster startup
+# End of Docker CLI completions

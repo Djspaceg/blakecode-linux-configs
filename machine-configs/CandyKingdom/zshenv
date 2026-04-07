@@ -20,7 +20,7 @@ export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/node@22/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/node@22/include"
 
-export JAVA_HOME=$(/usr/libexec/java_home)
+# JAVA_HOME is set by the global zshenv (with version pinning)
 
 # Getting the device emulator installed. The following was added during the Python2 install process.
 # https://ignition.av-lr.a2z.com/onboarding/platform-onboarding/macos.html

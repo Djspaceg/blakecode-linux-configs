@@ -59,8 +59,14 @@ alias cdcdk='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleCDK'
 alias cdtests='cd ~/workplace/locke/locke-console/src/AWSLockeConsoleTests'
 alias cdhalo='cd ~/workplace/halo/halo-lr-app/src/HaloLRApp'
 
-# Set up federation to an AWS account by name or number
-source ~/.aws/aws-federate.sh
+# Lazy-load aws-federate: only sources the file on first `federate` call
+# (the function needs `source` to export env vars into the current shell,
+#  but there's no reason to parse it at shell startup)
+federate() {
+    unfunction federate  # remove this stub
+    source ~/.aws/aws-federate.sh
+    federate "$@"        # call the real function
+}
 
 buildcdk() {
     echo " -------------------------------------------------------------------";
@@ -100,11 +106,7 @@ alias batslog='bats transform --transformer AWSLambda-1.0 --target $(basename $P
 
 ulimit -n 65536
 
-## Add iTerm2 integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# iTerm2 integration is now in the global zshrc (loaded early to prevent re-sourcing)
 source_machine_version iterm
 
-## Setup for NVM (auto-generated at install time)
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# NVM removed — no longer in use. Node is managed via Homebrew (node@22).

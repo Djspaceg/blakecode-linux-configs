@@ -4,18 +4,16 @@ echo "Running main screenrc"
 
 ##############################################################################
 
+# Debug logging — captures all window output to log files
+# Uncomment these two lines to enable debugging.
+# logfile /tmp/screen-debug-%n.log
+# deflog on
+
 # Set HOSTNAME from .bc-hostname file or fallback to hostname command
 # Screen can't run zsh functions, so we need to set this directly
 setenv HOSTNAME `test -f $HOME/.bc-hostname && cat $HOME/.bc-hostname || hostname`
 setenv PROFILECONFIGDIR $HOME/.profileconfig
 setenv MACHINECONFIGDIR $PROFILECONFIGDIR/machine-configs/$HOSTNAME
-
-echo "--v--"
-echo "  HOME = $HOME"
-echo "  HOSTNAME = $HOSTNAME"
-echo "  PROFILECONFIGDIR = $PROFILECONFIGDIR"
-echo "  MACHINECONFIGDIR = $MACHINECONFIGDIR"
-echo "--\^--"
 
 # Set up the configuration, all the binds and options
 ##############################################################################
@@ -35,7 +33,6 @@ vbell off                   ## Disable the visual bell alert.           ##
 autodetach on                                                           ##
 altscreen on                                                            ##
 defscrollback 10000         ## Screen remembers more history.           ##
-defmousetrack off           ## Mouse tracking for apps (vim, etc). ##
 shell -$SHELL               ## Use user's default shell as login shell ##
 shelltitle "$ |$SHELL"      ## Dynamic shell title                      ##
 defmonitor on               ## Turn monitoring on (see 'activity')      ##
@@ -139,7 +136,7 @@ bindkey -k k7 select 7  # F7
 bindkey -k k8 select 8  # F8
 bindkey -k k9 select 9  # F9
 
-@REM bindkey -k k; source "$HOME/.screenrc" # F10 # Reload this file, in case we are editing it.
+# bindkey -k k; source "$HOME/.screenrc" # F10 # Reload this file, in case we are editing it.
 bindkey -k k; source "$MACHINECONFIGDIR/screenrc-tabs" # F10 # Reload the tabs file, in case we are editing it.
 bindkey -k F1 command   # F11 # Shortcut to [Ctrl]-[a]
 bindkey -k F2 quit      # F12 # Quick Quit All
