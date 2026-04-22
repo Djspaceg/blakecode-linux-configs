@@ -12,6 +12,9 @@ source "$HOME/.profileconfig/shell/core/env.zsh"
 ### MACHINE ENV VARS
 ###########################
 
+# Route `npm` through bnpm shim (brazil-build in /workplace/, real npm elsewhere)
+export BNPM_OVERRIDE_NPM=1
+
 export PATH="$HOME/.toolbox/bin:$PATH"
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 
