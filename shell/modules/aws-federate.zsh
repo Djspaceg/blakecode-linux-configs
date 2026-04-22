@@ -1,13 +1,8 @@
 # shell/modules/aws-federate.zsh
 #
-# Lazy-loaded AWS federation.
-# The federate() function needs to `source` aws-federate.sh to export
-# env vars into the current shell, but there's no reason to parse the
-# full file at shell startup. This stub replaces itself on first call.
+# AWS federation — sources the full script at shell init.
+# The script only defines variables and a function; the actual
+# network calls only happen when you run `federate`.
 #
 
-federate() {
-    unfunction federate
-    source ~/.aws/aws-federate.sh
-    federate "$@"
-}
+source ~/.aws/aws-federate.sh

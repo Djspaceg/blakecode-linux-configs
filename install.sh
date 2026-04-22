@@ -83,13 +83,15 @@ if [[ ! -d "$SHELL_MACHINE_DIR" ]]; then
     mkdir -p "$SHELL_MACHINE_DIR"
 
     # Skeleton zshenv
-    cat > "$SHELL_MACHINE_DIR/zshenv" << 'ZSHENV'
-# MACHINE_NAME/zshenv
+    cat > "$SHELL_MACHINE_DIR/zshenv" << ZSHENV
+# ${TARGET_HOSTNAME}/zshenv
 #
 # Runs for EVERY zsh invocation. Environment variables only, no output.
 #
 
-source "$HOME/.profileconfig/shell/core/env.zsh"
+export HOSTNAME="${TARGET_HOSTNAME}"
+
+source "\$HOME/.profileconfig/shell/core/env.zsh"
 
 ###########################
 ### MACHINE ENV VARS

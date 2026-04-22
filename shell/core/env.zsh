@@ -5,11 +5,9 @@
 # NO output allowed here.
 #
 
-# Derive HOSTNAME from the calling file's directory name
-# ~/.zshenv → shell/machines/CandyKingdom/zshenv → HOSTNAME=CandyKingdom
-if [[ -z "$HOSTNAME" ]]; then
-    export HOSTNAME="${${(%):-%x}:h:t}"
-fi
+# HOSTNAME must be set by the machine's zshenv before sourcing this file.
+# Machine zshenv derives it from its own file path:
+#   export HOSTNAME="${${(%):-%x}:h:t}"
 
 # Repo root
 export PROFILECONFIGDIR="${PROFILECONFIGDIR:-$HOME/.profileconfig}"

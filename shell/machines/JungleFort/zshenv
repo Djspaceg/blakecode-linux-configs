@@ -3,6 +3,9 @@
 # Runs for EVERY zsh invocation. Environment variables only, no output.
 #
 
+# Derive HOSTNAME from this file's directory name
+export HOSTNAME="JungleFort"
+
 source "$HOME/.profileconfig/shell/core/env.zsh"
 
 ###########################
