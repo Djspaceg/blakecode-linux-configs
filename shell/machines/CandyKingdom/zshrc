@@ -74,3 +74,6 @@ fi
 
 # Added by AIM CLI
 export PATH="$HOME/.aim/mcp-servers:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# Set up mise for runtime management
+eval "$(mise activate zsh)"
