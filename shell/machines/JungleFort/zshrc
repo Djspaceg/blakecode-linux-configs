@@ -21,6 +21,11 @@ source "$HOME/.profileconfig/shell/modules/iterm.zsh"
 ### MACHINE FUNCTIONS
 ###########################
 
+# Set terminal window/tab title
+set-title() {
+    printf '\e]0;%s\a' "$*"
+}
+
 ssh() {
     set-title "$*"
     /usr/bin/ssh -2 "$@"

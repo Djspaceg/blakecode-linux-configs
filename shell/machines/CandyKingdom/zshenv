@@ -43,3 +43,7 @@ fi
 
 # Local bin
 export PATH="$HOME/.local/bin:$PATH"
+
+# Flynn (Project) Settings
+export AWS_PROFILE=flynn-admin
+export AWS_REGION=us-west-2

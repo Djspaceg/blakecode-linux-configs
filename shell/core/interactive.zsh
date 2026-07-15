@@ -19,7 +19,7 @@ if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
 
-if [[ "$TERM_PROGRAM" == "kiro" ]]; then
+if [[ "$TERM_PROGRAM" == "kiro" ]] && (( $+commands[kiro] )); then
     . "$(kiro --locate-shell-integration-path zsh)"
 fi
 

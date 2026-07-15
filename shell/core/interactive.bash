@@ -95,6 +95,8 @@ export LSCOLORS='dahebxBxDxehxxbxexGxac'
 ### KEYBINDINGS
 ###########################
 
-bind '"\t":menu-complete'
-bind '"\033[A":history-search-backward'
-bind '"\033[B":history-search-forward'
+if [[ $- == *i* ]]; then
+    bind '"\t":menu-complete'
+    bind '"\033[A":history-search-backward'
+    bind '"\033[B":history-search-forward'
+fi

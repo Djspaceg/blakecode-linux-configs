@@ -29,20 +29,32 @@ alias editcron='env EDITOR=nano crontab -e'
 alias quakers='ssh -l quakers q3.mendelbio.com'
 
 ### Home Network
+# Single source of truth: each host's full connect command is defined once,
+# as an array. The direct ("*local") and through-the-router variants both
+# reuse the same array, so they can never drift apart. The router address is
+# likewise defined once. Aliases can't do this (alias expansion only fires on
+# a command's first word, so it won't compose in argument position), so these
+# are functions.
 ROUTER_ADDRESS='apt.resourcefork.com'
-CMD_SSH_ARC='ssh -A -t admin@192.168.1.9'
-CMD_SSH_PILLAR='ssh -A -t blake@192.168.1.2 screen -x -RR -U'
-CMD_SSH_RICK='ssh -A -t rick@192.168.1.5 screen -x -RR -U'
-CMD_SSH_ROUTER="ssh -A -t root@\${ROUTER_ADDRESS}"
-CMD_SSH_ROUTER_LOCAL='ssh -A -t root@192.168.1.1'
-alias ssharc="\${CMD_SSH_ROUTER} \\\\ \${CMD_SSH_ARC}"
-alias ssharclocal="\${CMD_SSH_ARC}"
-alias sshpillar="\${CMD_SSH_ROUTER} \\\\ \${CMD_SSH_PILLAR}"
-alias sshpillarlocal="\${CMD_SSH_PILLAR}"
-alias sshrick="\${CMD_SSH_ROUTER} \\\\ \${CMD_SSH_RICK}"
-alias sshricklocal="\${CMD_SSH_RICK}"
-alias sshrouter="\${CMD_SSH_ROUTER}"
-alias sshrouterlocal="\${CMD_SSH_ROUTER_LOCAL}"
+ROUTER_LOCAL_ADDRESS='192.168.1.1'
+
+_arc_cmd=(ssh -A -t admin@192.168.1.9)
+_pillar_cmd=(ssh -A -t blake@192.168.1.2 screen -x -RR -U)
+_rick_cmd=(ssh -A -t rick@192.168.1.5 screen -x -RR -U)
+
+# Dial the router, then run whatever command you pass on it.
+sshrouter()      { ssh -A -t "root@${ROUTER_ADDRESS}" "$@"; }
+sshrouterlocal() { ssh -A -t "root@${ROUTER_LOCAL_ADDRESS}"; }
+
+# Direct connections (already on the LAN): run the connect command locally.
+ssharclocal()    { "${_arc_cmd[@]}"; }
+sshpillarlocal() { "${_pillar_cmd[@]}"; }
+sshricklocal()   { "${_rick_cmd[@]}"; }
+
+# Through the router: run the SAME connect command, but on the router.
+ssharc()    { sshrouter "${_arc_cmd[@]}"; }
+sshpillar() { sshrouter "${_pillar_cmd[@]}"; }
+sshrick()   { sshrouter "${_rick_cmd[@]}"; }
 
 ### Working with Perl
 alias build='perl Makefile.PL; make'
