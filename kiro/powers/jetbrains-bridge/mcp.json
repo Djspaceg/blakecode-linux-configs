@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "jetbrains": {
+      "url": "http://localhost:64342/sse",
+      "type": "sse",
+      "autoApprove": [ "execute_run_configuration", "get_run_configurations", "get_file_problems", "get_project_dependencies", "get_project_modules", "create_new_file", "find_files_by_glob", "find_files_by_name_keyword", "get_all_open_file_paths", "list_directory_tree", "open_in_file_editor", "reformat_file", "get_file_text_by_path", "replace_text_in_file", "search_in_files_by_regex", "search_in_files_by_text", "get_symbol_info", "rename_refactoring", "execute_terminal_command", "get_repositories" ]
+    }
+  }
+}

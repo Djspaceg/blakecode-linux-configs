@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "harmony-mcp": {
+      "command": "harmony-mcp",
+      "args": [],
+      "autoApprove": [ "harmony-search-documentation", "harmony-list-code-example-topics", "harmony-get-code-example" ]
+    }
+  }
+}

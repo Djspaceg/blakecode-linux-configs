@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "prompt-mcp": {
+      "command": "prompt-mcp",
+      "args": []
+    }
+  }
+}

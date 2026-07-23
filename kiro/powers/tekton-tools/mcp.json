@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tekton-mcp": {
+      "command": "tekton-mcp",
+      "args": []
+    }
+  }
+}

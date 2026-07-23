@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "gitlab": {
+      "command": "npx",
+      "args": [ "-y", "--registry", "https://registry.npmjs.org", "@zereight/mcp-gitlab" ],
+      "env": {
+        "GITLAB_API_URL": "https://git.ak.devices.amazon.dev/api/v4",
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${GITLAB_PERSONAL_ACCESS_TOKEN}",
+        "GITLAB_READ_ONLY_MODE": "false"
+      }
+    }
+  }
+}

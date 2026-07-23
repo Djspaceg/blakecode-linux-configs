@@ -54,6 +54,10 @@ as needed. The machine file decides what to load and in what order.
 │       ├── AmazonCloudDesk.screenrc
 │       └── JungleFort.screenrc
 │
+├── kiro/                                Kiro AI config (see kiro/CATALOG.md)
+│   ├── CATALOG.md                       Inventory: MCP servers, powers, agents, steering
+│   └── powers/                          On-demand MCP "plugins" (install via Powers UI)
+│
 ├── scripts/                             Standalone executable scripts
 │   ├── justuptime.sh
 │   ├── myip.sh

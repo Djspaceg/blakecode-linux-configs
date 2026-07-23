@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "concur-mcp": {
+      "command": "concur-mcp",
+      "args": []
+    }
+  }
+}

@@ -25,3 +25,7 @@ case "${OSTYPE:-$(uname -s)}" in
 esac
 
 export PLAT_NIX PLAT_LINUX PLAT_MAC
+# Machine-local secrets (Kiro MCP tokens, etc.). File lives outside this repo,
+# chmod 600. Guarded: silently skipped on machines without it. Sourced from
+# zshenv so GUI apps that resolve shell env (Kiro/VS Code) see these too.
+[[ -f "$HOME/.secrets/kiro-mcp.env" ]] && source "$HOME/.secrets/kiro-mcp.env"

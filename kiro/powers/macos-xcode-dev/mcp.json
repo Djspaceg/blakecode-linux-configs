@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "XcodeBuildMCP": {
+      "env": {
+        "npm_config_registry": "https://registry.npmjs.org/"
+      },
+      "command": "npx",
+      "args": [ "-y", "xcodebuildmcp@latest" ],
+      "autoApprove": [ "discover_projs", "list_schemes", "session-set-defaults", "build_macos", "test_macos", "run_macos", "show_build_settings", "session-show-defaults", "clean", "build_run_macos", "get_mac_app_path", "launch_mac_app", "stop_mac_app" ],
+      "disabledTools": [ "type_text", "touch", "tap", "swipe", "long_press", "key_sequence", "key_press", "gesture", "button", "sim_statusbar", "set_sim_location", "set_sim_appearance", "reset_sim_location", "erase_sims", "test_sim", "stop_app_sim", "screenshot", "record_sim_video", "open_sim", "list_sims", "launch_app_sim", "launch_app_logs_sim", "install_app_sim", "get_sim_app_path", "build_sim", "build_run_sim", "boot_sim", "scaffold_ios_project", "build_device", "get_device_app_path", "install_app_device", "launch_app_device" ]
+    }
+  }
+}
