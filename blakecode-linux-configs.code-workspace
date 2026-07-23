@@ -10,6 +10,10 @@
 		{
 			"name": "SSH",
 			"path": "../../.ssh"
+		},
+		{
+			"name": "Kiro Global Config",
+			"path": "../../.kiro"
 		}
 	],
 	"settings": {}

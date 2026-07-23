@@ -95,7 +95,7 @@ bnpm() {
             command brazil-build "$@"
         fi
     else
-        command npm "$@"
+        command npm --registry https://registry.npmjs.org/ "$@"
     fi
 }
 
