@@ -256,6 +256,41 @@ fi
 make_symlink "$PROFILECONFIGDIR/screen/machines/$TARGET_HOSTNAME.screenrc" "$HOME/.screenrc"
 
 #############################################
+### Step 4b: Install Kiro powers (if Kiro is present)
+#############################################
+# Symlinks each power in kiro/powers/ into ~/.kiro/powers/installed/ and
+# registers it in installed.json. Idempotent; skipped when Kiro or jq is absent.
+
+if [[ -d "$HOME/.kiro" ]] && command -v jq >/dev/null 2>&1 && [[ -d "$REPO_DIR/kiro/powers" ]]; then
+    echo ""
+    echo "Installing Kiro powers..."
+    KIRO_INSTALLED_DIR="$HOME/.kiro/powers/installed"
+    KIRO_INSTALLED_JSON="$HOME/.kiro/powers/installed.json"
+    mkdir -p "$KIRO_INSTALLED_DIR"
+    [[ -f "$KIRO_INSTALLED_JSON" ]] || echo '{"version":"1.0.0","installedPowers":[],"dismissedAutoInstalls":[]}' > "$KIRO_INSTALLED_JSON"
+
+    for power_dir in "$REPO_DIR"/kiro/powers/*/; do
+        power="$(basename "$power_dir")"
+        make_symlink "$PROFILECONFIGDIR/kiro/powers/$power" "$KIRO_INSTALLED_DIR/$power"
+        if ! jq -e --arg n "$power" '.installedPowers[] | select(.name == $n)' "$KIRO_INSTALLED_JSON" >/dev/null; then
+            jq --arg n "$power" '.installedPowers += [{"name": $n, "registryId": "local"}]' \
+                "$KIRO_INSTALLED_JSON" > "$KIRO_INSTALLED_JSON.tmp" && mv "$KIRO_INSTALLED_JSON.tmp" "$KIRO_INSTALLED_JSON"
+            echo "  ✓ registered $power in installed.json"
+        fi
+    done
+
+    if [[ ! -f "$HOME/.secrets/kiro-mcp.env" ]]; then
+        echo ""
+        echo "  ⚠ ~/.secrets/kiro-mcp.env not found on this machine."
+        echo "    Powers that need tokens (devices-gitlab) and global MCP servers"
+        echo "    (builder-mcp Quip, SuperhumanDocs) will fail auth until you create it:"
+        echo "      mkdir -p ~/.secrets && chmod 700 ~/.secrets"
+        echo "      \$EDITOR ~/.secrets/kiro-mcp.env   # export QUIP_API_TOKEN=... etc."
+        echo "      chmod 600 ~/.secrets/kiro-mcp.env"
+    fi
+fi
+
+#############################################
 ### Step 5: Summary
 #############################################
 

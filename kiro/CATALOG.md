@@ -32,8 +32,11 @@ sourced by `shell/core/env.zsh`, referenced from configs via `${VAR}`.
 
 ## Powers (on-demand, in `kiro/powers/`)
 
-Install once per machine: Powers panel -> Add Custom Power -> Local Directory
--> path below. Kiro activates them automatically when the task matches.
+Installed automatically by `install.sh` (Step 4b): each power is symlinked
+into `~/.kiro/powers/installed/` and registered in `installed.json`, so edits
+in this repo apply immediately. Kiro activates powers automatically when the
+task matches their keywords. Restart Kiro after first install so it connects
+the powers' MCP servers.
 
 | Power | Server | Activates for |
 |-------|--------|---------------|
