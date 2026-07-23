@@ -32,11 +32,19 @@ sourced by `shell/core/env.zsh`, referenced from configs via `${VAR}`.
 
 ## Powers (on-demand, in `kiro/powers/`)
 
-Installed automatically by `install.sh` (Step 4b): each power is symlinked
-into `~/.kiro/powers/installed/` and registered in `installed.json`, so edits
-in this repo apply immediately. Kiro activates powers automatically when the
-task matches their keywords. Restart Kiro after first install so it connects
-the powers' MCP servers.
+Installed automatically by `install.sh` (Step 4b), which runs
+`kiro/install-powers.py`. That replicates Kiro's "Import power from a folder"
+flow for all powers at once, writing three pieces of state:
+
+- `~/.kiro/powers/registries/user-added.json` (source records; drives the panel)
+- `~/.kiro/powers/installed.json` (entries with `registryId: user-added`)
+- `~/.kiro/settings/mcp.json` -> `powers.mcpServers` (namespaced
+  `power-<name>-<server>`, sibling of the top-level `mcpServers`)
+
+Each power dir is symlinked into `~/.kiro/powers/installed/`, so edits in this
+repo apply without reinstalling. Idempotent. After a first install or a power
+change, reload the Kiro window (Developer: Reload Window) so it re-reads the
+registry and connects the powers' MCP servers.
 
 | Power | Server | Activates for |
 |-------|--------|---------------|
