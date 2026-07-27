@@ -40,6 +40,22 @@ else
     export HISTFILE="$HOME/.zsh_history"
 fi
 
+# macOS /etc/zshrc ships HISTSIZE=2000 / SAVEHIST=1000. zsh with no append
+# option rewrites HISTFILE wholesale from memory when a shell exits, so one
+# long-lived shell can shrink the file to its own last 1000 commands. Kiro's
+# agent shell is exactly that: one persistent zsh that runs hundreds of huge
+# generated commands against this same history file.
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt APPEND_HISTORY        # add to HISTFILE instead of replacing it on exit
+setopt INC_APPEND_HISTORY    # write each command when run, not at shell exit
+setopt EXTENDED_HISTORY      # store timestamp and duration per entry
+setopt HIST_IGNORE_SPACE     # a leading space keeps a command out of history
+setopt HIST_IGNORE_DUPS      # drop an entry identical to the previous one
+setopt HIST_REDUCE_BLANKS    # normalize whitespace before storing
+setopt HIST_NO_STORE         # don't store history/fc invocations themselves
+
 ###########################
 ### PROMPT
 ###########################
