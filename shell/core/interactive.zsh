@@ -33,9 +33,17 @@ setopt prompt_subst
 ### HISTORY
 ###########################
 
-# Screen windows get separate history, everything else shares one file
+# Kiro runs its agent commands through interactive shells that inherit this
+# config. Those commands are machine-generated, huge, and useless for recall.
+# No env marker separates an agent shell from a terminal opened by hand inside
+# Kiro, so ALL Kiro shells write to their own history file and the real ones
+# are left alone. This is unconditional and does not depend on how the agent
+# formats or prefixes what it runs.
 if [[ -n "$WINDOW" ]]; then
+    # Screen windows get separate history
     export HISTFILE="$HOME/.zsh_history.window.$WINDOW"
+elif [[ "$TERM_PROGRAM" == "kiro" ]]; then
+    export HISTFILE="$HOME/.zsh_history.kiro"
 else
     export HISTFILE="$HOME/.zsh_history"
 fi
