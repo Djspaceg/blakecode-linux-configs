@@ -65,6 +65,27 @@ setopt HIST_REDUCE_BLANKS    # normalize whitespace before storing
 setopt HIST_NO_STORE         # don't store history/fc invocations themselves
 
 ###########################
+### KIRO AGENT SHELLS
+###########################
+
+# Kiro pipes commands into a persistent interactive zsh over a pty. Anything
+# that waits for input, takes over the terminal, or pages its output hangs
+# until the tool timeout and fails. Make those paths fail instantly instead.
+if [[ "$TERM_PROGRAM" == "kiro" ]]; then
+    export PAGER=cat
+    export GIT_PAGER=cat
+    export MANPAGER=cat
+    export LESS=FRX
+    export EDITOR=false
+    export VISUAL=false
+    export GIT_EDITOR=false
+    export GIT_TERMINAL_PROMPT=0
+    export HOMEBREW_NO_AUTO_UPDATE=1
+    export DEBIAN_FRONTEND=noninteractive
+    export PIP_NO_INPUT=1
+fi
+
+###########################
 ### PROMPT
 ###########################
 
